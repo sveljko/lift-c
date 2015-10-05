@@ -1,0 +1,95 @@
+\hypertarget{lift__free__and__null_8h}{\section{lift\-\_\-free\-\_\-and\-\_\-null.\-h File Reference}
+\label{lift__free__and__null_8h}\index{lift\-\_\-free\-\_\-and\-\_\-null.\-h@{lift\-\_\-free\-\_\-and\-\_\-null.\-h}}
+}
+
+
+A safer alternative to free().  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{lift__free__and__null_8h_ae429d1e4d6d8ae834f8174d6cf0b9e10}{lift\-\_\-nfree}(ptr)~\hyperlink{lift__free__and__null_8h_a873930b05bedfabc4dadf6df93a88428}{lift\-\_\-free\-\_\-and\-\_\-null}(\&(ptr)), sizeof $\ast$(ptr)
+\begin{DoxyCompactList}\small\item\em This macro solves the usability problem with \hyperlink{lift__free__and__null_8h_a873930b05bedfabc4dadf6df93a88428}{lift\-\_\-free\-\_\-and\-\_\-null()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{lift__free__and__null_8h_a873930b05bedfabc4dadf6df93a88428}{lift\-\_\-free\-\_\-and\-\_\-null} (void $\ast$ptrptr)
+\begin{DoxyCompactList}\small\item\em An alternative / wrapper to free(). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A safer alternative to free(). \begin{DoxyAuthor}{Author}
+Srdjan Veljkovic 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+M\-I\-T license 
+\end{DoxyCopyright}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{lift__free__and__null_8h_ae429d1e4d6d8ae834f8174d6cf0b9e10}{\index{lift\-\_\-free\-\_\-and\-\_\-null.\-h@{lift\-\_\-free\-\_\-and\-\_\-null.\-h}!lift\-\_\-nfree@{lift\-\_\-nfree}}
+\index{lift\-\_\-nfree@{lift\-\_\-nfree}!lift_free_and_null.h@{lift\-\_\-free\-\_\-and\-\_\-null.\-h}}
+\subsubsection[{lift\-\_\-nfree}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-nfree(
+\begin{DoxyParamCaption}
+\item[{}]{ptr}
+\end{DoxyParamCaption}
+)~{\bf lift\-\_\-free\-\_\-and\-\_\-null}(\&(ptr)), sizeof $\ast$(ptr)}}\label{lift__free__and__null_8h_ae429d1e4d6d8ae834f8174d6cf0b9e10}
+
+
+This macro solves the usability problem with \hyperlink{lift__free__and__null_8h_a873930b05bedfabc4dadf6df93a88428}{lift\-\_\-free\-\_\-and\-\_\-null()}. 
+
+It is a {\itshape good} macro, as it is simple and does not evaluate its argument more than once.
+
+Here we expect a pointer and you can't pass a variable. Of course, you may pass a pointer to pointer, but that may be valid input.
+
+There is an additional check -\/ you can't pass a void pointer. That means that some strange, but valid code, will not compile. If you have such code, use \hyperlink{lift__free__and__null_8h_a873930b05bedfabc4dadf6df93a88428}{lift\-\_\-free\-\_\-and\-\_\-null()}, but be careful.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & The pointer to free (previously allocated by malloc() or realloc()). It will be set to N\-U\-L\-L \char`\"{}in place\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The size of what the {\ttfamily ptr} points to 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_free_and_null_example_8c-example}{lift\-\_\-free\-\_\-and\-\_\-null\-\_\-example.\-c}.\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{lift__free__and__null_8h_a873930b05bedfabc4dadf6df93a88428}{\index{lift\-\_\-free\-\_\-and\-\_\-null.\-h@{lift\-\_\-free\-\_\-and\-\_\-null.\-h}!lift\-\_\-free\-\_\-and\-\_\-null@{lift\-\_\-free\-\_\-and\-\_\-null}}
+\index{lift\-\_\-free\-\_\-and\-\_\-null@{lift\-\_\-free\-\_\-and\-\_\-null}!lift_free_and_null.h@{lift\-\_\-free\-\_\-and\-\_\-null.\-h}}
+\subsubsection[{lift\-\_\-free\-\_\-and\-\_\-null}]{\setlength{\rightskip}{0pt plus 5cm}void lift\-\_\-free\-\_\-and\-\_\-null (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{ptrptr}
+\end{DoxyParamCaption}
+)}}\label{lift__free__and__null_8h_a873930b05bedfabc4dadf6df93a88428}
+
+
+An alternative / wrapper to free(). 
+
+It will N\-U\-L\-L the pointer, not just free() it. Thus, you will not have a dangling pointer.
+
+Passing N\-U\-L\-L or a pointer to N\-U\-L\-L (pointer) will simply be ignored. Otherwise, free() will be called on {\ttfamily $\ast$ptrptr} and then it will be N\-U\-L\-L-\/ed.
+
+\begin{DoxyWarning}{Warning}
+You must pass the address of your pointer, not the pointer itself. Since {\ttfamily ptrptr} is of {\ttfamily void$\ast$}, it will not detect if you pass the pointer, and we shall have undefined behavior.
+\end{DoxyWarning}
+\begin{DoxyRemark}{Remarks}
+The advantage of this function versus a pure macro implementation is that we avoid the problem of multiple evaluation in the macro. That should make it easier to find bugs with not passing address of a pointer (but the pointer itself).
+\end{DoxyRemark}
+We provida macro wrapper in \hyperlink{lift__free__and__null_8h_ae429d1e4d6d8ae834f8174d6cf0b9e10}{lift\-\_\-nfree}, that solves this usability problem.
+
+\begin{DoxyRemark}{Remarks}
+Declaring {\ttfamily ptrptr} to be of {\ttfamily void $\ast$$\ast$} type would be much worse, as to silence warnings (or maybe errors) one would need to cast to {\ttfamily void$\ast$$\ast$} always, which would enable passing {\itshape anything}.
+\end{DoxyRemark}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em ptrptr} & Pointer to the pointer to free and N\-U\-L\-L \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_free_and_null_example_8c-example}{lift\-\_\-free\-\_\-and\-\_\-null\-\_\-example.\-c}.\end{Desc}

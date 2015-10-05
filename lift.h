@@ -12,6 +12,7 @@
 */
 
 #include "lift_arealloc.h"
+#include "lift_free_and_null.h"
 
 /** @file */
 

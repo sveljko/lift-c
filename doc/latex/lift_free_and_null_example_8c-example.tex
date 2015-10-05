@@ -1,0 +1,31 @@
+\hypertarget{lift_free_and_null_example_8c-example}{\section{lift\-\_\-free\-\_\-and\-\_\-null\-\_\-example.\-c}
+}
+
+\begin{DoxyCodeInclude}
+\textcolor{preprocessor}{#include "\hyperlink{lift__free__and__null_8h}{lift\_free\_and\_null.h}"}
+
+\textcolor{preprocessor}{#include <stdio.h>}
+\textcolor{preprocessor}{#include <stdlib.h>}
+
+
+\textcolor{keywordtype}{int} main()
+\{
+    \textcolor{keywordtype}{char} *s = malloc(100);
+    printf(\textcolor{stringliteral}{"s = %p; after malloc()\(\backslash\)n"}, s);
+    free(s);
+    printf(\textcolor{stringliteral}{"s = %p; after free()\(\backslash\)n"}, s);
+
+    s = malloc(1000);
+    printf(\textcolor{stringliteral}{"s = %p; after another malloc()\(\backslash\)n"}, s);
+    \hyperlink{lift__free__and__null_8h_a873930b05bedfabc4dadf6df93a88428}{lift\_free\_and\_null}(&s);
+    printf(\textcolor{stringliteral}{"s = %p; after lift\_free\_and\_null()\(\backslash\)n"}, s);
+
+    s = malloc(10000);
+    printf(\textcolor{stringliteral}{"s = %p; after yet another malloc()\(\backslash\)n"}, s);
+    \hyperlink{lift__free__and__null_8h_ae429d1e4d6d8ae834f8174d6cf0b9e10}{lift\_nfree}(s+2);
+    printf(\textcolor{stringliteral}{"s = %p; after lift\_nfree()\(\backslash\)n"}, s);
+
+    \textcolor{keywordflow}{return} 0;
+\}
+\end{DoxyCodeInclude}
+ 

@@ -8,7 +8,7 @@
 #define SQRT_SIZE_MAX (1UL << ((CHAR_BIT/2) * sizeof(size_t)))
 
 
-void *lift_arealloc(void *ptrptr, size_t members, size_t size)
+void *lift_arealloc_implementation(void *ptrptr, size_t members, size_t size)
 {
     void *result;
     void **pp = ptrptr;

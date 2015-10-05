@@ -1,0 +1,46 @@
+\hypertarget{lift_arealloc_example_8c-example}{\section{lift\-\_\-arealloc\-\_\-example.\-c}
+}
+
+\begin{DoxyCodeInclude}
+\textcolor{preprocessor}{#include "\hyperlink{lift__arealloc_8h}{lift\_arealloc.h}"}
+
+\textcolor{preprocessor}{#include <stdio.h>}
+\textcolor{preprocessor}{#include <assert.h>}
+
+
+\textcolor{keywordtype}{int} main()
+\{
+    \textcolor{keywordtype}{int} *v = NULL;
+    \textcolor{keywordflow}{if} (NULL == \hyperlink{lift__arealloc_8h_a2193a6bf115f8542b19f0225cfb6a306}{lift\_arealloc\_implementation}(&v, 4, \textcolor{keyword}{sizeof} *v)) \{
+        printf(\textcolor{stringliteral}{"Failed to allocate memory\(\backslash\)n"});
+        \textcolor{keywordflow}{return} -1;
+    \}
+    v[0] = v[1] = v[2] = v[3] = 4443;
+
+    \textcolor{keywordflow}{if} (NULL == \hyperlink{lift__arealloc_8h_a2193a6bf115f8542b19f0225cfb6a306}{lift\_arealloc\_implementation}(&v, 8, \textcolor{keyword}{sizeof} *v)) \{
+        printf(\textcolor{stringliteral}{"Failed to re-allocate memory\(\backslash\)n"});
+    \textcolor{keywordflow}{return} -1;
+    \}
+    \textcolor{keywordflow}{if} (NULL == \hyperlink{lift__arealloc_8h_a2193a6bf115f8542b19f0225cfb6a306}{lift\_arealloc\_implementation}(&v, (\textcolor{keywordtype}{size\_t})~0, \textcolor{keyword}{sizeof} *v)) \{
+        printf(\textcolor{stringliteral}{"Failed to re-allocate memory, as expected\(\backslash\)n"});
+    \}
+    v[4] = v[5] = v[6] = v[7] = 443;
+
+    \textcolor{keywordflow}{if} (NULL == \hyperlink{lift__arealloc_8h_aa29066af0304aa4445b7e13ccff595de}{lift\_arealloc}(v, 6)) \{
+        printf(\textcolor{stringliteral}{"Failed to re-allocate memory\(\backslash\)n"});
+    \textcolor{keywordflow}{return} -1;
+    \}
+    \textcolor{keywordflow}{if} (NULL == \hyperlink{lift__arealloc_8h_aa29066af0304aa4445b7e13ccff595de}{lift\_arealloc}(v, (\textcolor{keywordtype}{size\_t})~0)) \{
+        printf(\textcolor{stringliteral}{"Failed to re-allocate memory, as expected\(\backslash\)n"});
+    \}
+
+    assert(v[5] == 443);
+
+    free(v);
+
+    puts(\textcolor{stringliteral}{"lift\_arealloc() example finished normally"});
+
+    \textcolor{keywordflow}{return} 0;
+\}
+\end{DoxyCodeInclude}
+ 

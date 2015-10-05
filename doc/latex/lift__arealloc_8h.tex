@@ -1,0 +1,140 @@
+\hypertarget{lift__arealloc_8h}{\section{lift\-\_\-arealloc.\-h File Reference}
+\label{lift__arealloc_8h}\index{lift\-\_\-arealloc.\-h@{lift\-\_\-arealloc.\-h}}
+}
+
+
+Safe alternative for realloc() for arrays.  
+
+
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+Include dependency graph for lift\-\_\-arealloc.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{lift__arealloc_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{lift__arealloc_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{lift__arealloc_8h_aa29066af0304aa4445b7e13ccff595de}{lift\-\_\-arealloc}(ptr, members)~\hyperlink{lift__arealloc_8h_a2193a6bf115f8542b19f0225cfb6a306}{lift\-\_\-arealloc\-\_\-implementation}(\&(ptr),(members), sizeof $\ast$(ptr))
+\begin{DoxyCompactList}\small\item\em This macro makes lif\-\_\-arealloc\-\_\-implementation() a lot easier to use and less error prone. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{lift__arealloc_8h_a2193a6bf115f8542b19f0225cfb6a306}{lift\-\_\-arealloc\-\_\-implementation} (void $\ast$ptrptr, size\-\_\-t members, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em A safe alternative to realloc() for arrays. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Safe alternative for realloc() for arrays. Part of L\-I\-F\-T, but can be used on its own -\/ doesn't depend on anything from L\-I\-F\-T. \begin{DoxyAuthor}{Author}
+Srdjan Veljkovic 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+M\-I\-T License 
+\end{DoxyCopyright}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{lift__arealloc_8h_aa29066af0304aa4445b7e13ccff595de}{\index{lift\-\_\-arealloc.\-h@{lift\-\_\-arealloc.\-h}!lift\-\_\-arealloc@{lift\-\_\-arealloc}}
+\index{lift\-\_\-arealloc@{lift\-\_\-arealloc}!lift_arealloc.h@{lift\-\_\-arealloc.\-h}}
+\subsubsection[{lift\-\_\-arealloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-arealloc(
+\begin{DoxyParamCaption}
+\item[{}]{ptr, }
+\item[{}]{members}
+\end{DoxyParamCaption}
+)~{\bf lift\-\_\-arealloc\-\_\-implementation}(\&(ptr),(members), sizeof $\ast$(ptr))}}\label{lift__arealloc_8h_aa29066af0304aa4445b7e13ccff595de}
+
+
+This macro makes lif\-\_\-arealloc\-\_\-implementation() a lot easier to use and less error prone. 
+
+It is a {\itshape good} macro, as it is very simple and doesn't evaluate its arguments more than once.
+
+We fix two usability issues\-:
+\begin{DoxyEnumerate}
+\item You may pass a pointer (to a value) instead of a pointer to pointer
+\item You may pass a wrong (element) size
+\end{DoxyEnumerate}
+
+Here we accept a pointer, and you can't pass a value. You can, of course pass a pointer to pointer, but, that may be valid input, so we can't reject that.
+
+The size of an element is deduced to be {\ttfamily sizeof $\ast$ptr}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & The pointer to reallocate -\/ it will be changed \char`\"{}in place\char`\"{}, if need be. \\
+\hline
+{\em members} & The number of members of the new array \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the new array or N\-U\-L\-L on failure to (re)allocate 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_arealloc_example_8c-example}{lift\-\_\-arealloc\-\_\-example.\-c}.\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{lift__arealloc_8h_a2193a6bf115f8542b19f0225cfb6a306}{\index{lift\-\_\-arealloc.\-h@{lift\-\_\-arealloc.\-h}!lift\-\_\-arealloc\-\_\-implementation@{lift\-\_\-arealloc\-\_\-implementation}}
+\index{lift\-\_\-arealloc\-\_\-implementation@{lift\-\_\-arealloc\-\_\-implementation}!lift_arealloc.h@{lift\-\_\-arealloc.\-h}}
+\subsubsection[{lift\-\_\-arealloc\-\_\-implementation}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ lift\-\_\-arealloc\-\_\-implementation (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{ptrptr, }
+\item[{size\-\_\-t}]{members, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{lift__arealloc_8h_a2193a6bf115f8542b19f0225cfb6a306}
+
+
+A safe alternative to realloc() for arrays. 
+
+It avoids the problems of overflow ({\ttfamily members} $\ast$  may overflow) and \char`\"{}leaking\char`\"{} the previously allocated memory in case of failure. In case you're not aware of it, here is the offending code\-: \begin{DoxyVerb}char *s = malloc(100);
+s = realloc(s, 200);
+\end{DoxyVerb}
+
+
+If realloc() fails, {\ttfamily s} will now be N\-U\-L\-L, and previously malloc()-\/ ated memory is leaked, there is no way to free it now.
+
+The only problem that \hyperlink{lift__arealloc_8h_aa29066af0304aa4445b7e13ccff595de}{lift\-\_\-arealloc()} doesn't solve is that passing an invalid pointer (not N\-U\-L\-L or \char`\"{}really\char`\"{} allocated) results in undefined behavior.
+
+\begin{DoxyWarning}{Warning}
+Don't forget to pass the address of your pointer, rather than the pointer itself, even though the formal parameter type for  is {\ttfamily void$\ast$}.
+\end{DoxyWarning}
+So, to fix the realloc() problem cited above, we would\-: \begin{DoxyVerb}char *s = malloc(100);
+if (NULL == lift_arealloc(&s, 200, sizeof(char)) {
+    // handle reallocation failure, but `s` stayed the same
+}
+\end{DoxyVerb}
+
+
+\begin{DoxyNote}{Note}
+The downside is that may simply forget to pass the address of your pointer, and pass the pointer itself, and there is no way that we can detect that. Declaring {\ttfamily ptrptr} to be a {\ttfamily void$\ast$$\ast$} would have actually been worse, as that would require cast if you want to avoid warnings (or even errors) for passing a pointer to, say, {\ttfamily int$\ast$}, instead of to {\ttfamily void$\ast$}. So, passing something like {\ttfamily 3}, because you cast it to {\ttfamily void$\ast$$\ast$} would not be detected.
+\end{DoxyNote}
+To help with these usability issues, you should probably use \hyperlink{lift__arealloc_8h_aa29066af0304aa4445b7e13ccff595de}{lift\-\_\-arealloc} macro instead of this function.
+
+\begin{DoxyRemark}{Remarks}
+On detecting overflow or any other invalid usage, it will {\itshape not} call realloc and will return N\-U\-L\-L and set {\ttfamily errno} to E\-R\-A\-N\-G\-E. If realloc() returns N\-U\-L\-L, {\ttfamily ptrptr} will not be changed. Otherwise, the result of realloc() will be written to {\ttfamily $\ast$ptrptr}.
+\end{DoxyRemark}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em ptrptr} & Pointer to pointer to be reallocated. N\-U\-L\-L is invalid. If not N\-U\-L\-L, and other checks pass, {\ttfamily $\ast$ptrptr} will passed to realloc().\\
+\hline
+\mbox{\tt in}  & {\em members} & The number of members of the new array. If the result of multiply with {\ttfamily size} doesn't overflow, that result will be passed to realloc(). Also, if it or  is 0, the function may fail.\\
+\hline
+\mbox{\tt in}  & {\em size} & Size of a member of the new array. If the result of multiply with {\ttfamily members} doesn't overflow, that result will be passed to realloc(). Also, if it or  is 0, the function may fail.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+On internal or realloc() failure, will return N\-U\-L\-L. Otherwise, will return the result of realloc(). 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_arealloc_example_8c-example}{lift\-\_\-arealloc\-\_\-example.\-c}.\end{Desc}

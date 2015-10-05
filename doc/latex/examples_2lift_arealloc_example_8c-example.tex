@@ -1,0 +1,21 @@
+\hypertarget{examples_2lift_arealloc_example_8c-example}{\section{examples/lift\-\_\-arealloc\-\_\-example.\-c}
+}
+A safe alternative to realloc() for arrays. It avoids the problems of overflow ({\ttfamily members} $\ast$  may overflow) and \char`\"{}leaking\char`\"{} the previously allocated memory in case of failure. In case you're not aware of it, here is the offending code\-: \begin{DoxyVerb}char *s = malloc(100);
+s = realloc(s, 200);
+\end{DoxyVerb}
+
+
+If realloc() fails, {\ttfamily s} will now be N\-U\-L\-L, and previously malloc()-\/ ated memory is leaked, there is no way to free it now.
+
+The only problem that lift\-\_\-arealloc() doesn't solve is that passing an invalid pointer (not N\-U\-L\-L or \char`\"{}really\char`\"{} allocated) results in undefined behavior.
+
+\begin{DoxyNote}{Note}
+The downside is that may simply forget to pass the address of your pointer, and pass the pointer itself, and there is no way that we can detect that. Declaring {\ttfamily ptrptr} to be a {\ttfamily void$\ast$$\ast$} would have actually been worse, as that would require cast if you want to avoid warnings (or even errors) for passing a pointer to, say, {\ttfamily int$\ast$}, instead of to {\ttfamily void$\ast$}. So, passing something like {\ttfamily 3}, because you cast it to {\ttfamily void$\ast$$\ast$} would not be detected.
+\end{DoxyNote}
+\begin{DoxyRemark}{Remarks}
+On detecting overflow or any other invalid usage, it will {\itshape not} call realloc and will return N\-U\-L\-L and set {\ttfamily errno} to E\-R\-A\-N\-G\-E. If realloc() returns N\-U\-L\-L, {\ttfamily ptrptr} will not be changed. Otherwise, the result of realloc() will be written to {\ttfamily $\ast$ptrptr}.
+\end{DoxyRemark}
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ 
