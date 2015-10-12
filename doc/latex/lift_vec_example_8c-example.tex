@@ -1,0 +1,230 @@
+\hypertarget{lift_vec_example_8c-example}{\section{lift\-\_\-vec\-\_\-example.\-c}
+}
+
+\begin{DoxyCodeInclude}
+\textcolor{comment}{/* -*- c-file-style:"stroustrup"; indent-tabs-mode: nil -*- */}
+\textcolor{preprocessor}{#include "\hyperlink{lift__vec_8h}{lift\_vec.h}"}
+
+\textcolor{preprocessor}{#include <assert.h>}
+
+
+\textcolor{keywordtype}{int} main()
+\{
+    \textcolor{keywordtype}{size\_t} idx;
+    \textcolor{keyword}{typedef} \hyperlink{lift__vec_8h_a953ac441707c2affe21bcd56a639c502}{LIFT\_DECL\_VEC}(\textcolor{keywordtype}{int}) vecint\_t;
+
+    vecint\_t v;
+    \textcolor{keywordtype}{int} *iter;
+    LIFT\_VEC\_INIT(v);
+
+    assert(!\hyperlink{lift__vec_8h_a0086251626d7d199046365bfb574c4e2}{LIFT\_VEC\_VALID}(v));
+    assert(\hyperlink{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}{lift\_vec\_size}(v) == 0);
+    assert(\hyperlink{lift__vec_8h_a4d7e791410bec3b894b04ad7435816f0}{lift\_vec\_empty}(v));
+    assert(\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v) == \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(v));
+
+    \hyperlink{lift__vec_8h_a2e13eb1aa433c210e93429d81d2ecd42}{lift\_vec\_push\_back}(v,3);
+    \hyperlink{lift__vec_8h_ab4b8005f19e2530b27dc643cc32a3be4}{LIFT\_PRINTF}(v);
+    assert(\hyperlink{lift__vec_8h_a0086251626d7d199046365bfb574c4e2}{LIFT\_VEC\_VALID}(v));
+    assert(\hyperlink{lift__vec_8h_a7ad8de6e820ee182d665d85f610032d2}{LIFT\_VEC\_SAFE}(v, 0));
+    assert(\hyperlink{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}{lift\_vec\_size}(v) == 1);
+    assert(!\hyperlink{lift__vec_8h_a4d7e791410bec3b894b04ad7435816f0}{lift\_vec\_empty}(v));
+    assert(\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v) + 1 == \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(v));
+    assert(3 == *\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v));
+    assert(3 == \hyperlink{lift__vec_8h_a204b51e518a7769c7eee86c4e40abd2a}{lift\_vec\_front\_get}(v));
+    assert(3 == \hyperlink{lift__vec_8h_afe2326662ff61f6073ad1728558ba2d9}{lift\_vec\_back\_get}(v));
+    assert(3 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 0));
+
+    \hyperlink{lift__vec_8h_a328160cf98397947580f3854727c1f2a}{LIFT\_VEC\_FOR\_EACH\_IDX}(idx, v) \{
+        assert(idx == 0);
+    \}
+    \hyperlink{lift__vec_8h_ae51b80ad7deb1a897534ec12405568db}{LIFT\_VEC\_FOR\_EACH\_ITER}(iter, v) \{
+        assert(*iter == 3);
+    \}
+
+    \hyperlink{lift__vec_8h_a2e13eb1aa433c210e93429d81d2ecd42}{lift\_vec\_push\_back}(v,4);
+    \hyperlink{lift__vec_8h_ab4b8005f19e2530b27dc643cc32a3be4}{LIFT\_PRINTF}(v);
+    assert(\hyperlink{lift__vec_8h_a0086251626d7d199046365bfb574c4e2}{LIFT\_VEC\_VALID}(v));
+    assert(\hyperlink{lift__vec_8h_a7ad8de6e820ee182d665d85f610032d2}{LIFT\_VEC\_SAFE}(v, 1));
+    assert(\hyperlink{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}{lift\_vec\_size}(v) == 2);
+    assert(!\hyperlink{lift__vec_8h_a4d7e791410bec3b894b04ad7435816f0}{lift\_vec\_empty}(v));
+    assert(\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v) + 2 == \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(v));
+    assert(3 == *\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v));
+    assert(3 == \hyperlink{lift__vec_8h_a204b51e518a7769c7eee86c4e40abd2a}{lift\_vec\_front\_get}(v));
+    assert(4 == \hyperlink{lift__vec_8h_afe2326662ff61f6073ad1728558ba2d9}{lift\_vec\_back\_get}(v));
+    assert(3 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 0));
+    assert(4 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 1));
+    \hyperlink{lift__vec_8h_a328160cf98397947580f3854727c1f2a}{LIFT\_VEC\_FOR\_EACH\_IDX}(idx, v) \{
+        assert((idx == 0) || (idx == 1));
+    \}
+    idx = 0;
+    \hyperlink{lift__vec_8h_ae51b80ad7deb1a897534ec12405568db}{LIFT\_VEC\_FOR\_EACH\_ITER}(iter, v) \{
+        assert((idx == 0) || (idx == 1));
+        \textcolor{keywordflow}{switch} (idx) \{
+        \textcolor{keywordflow}{case} 0: assert(*iter == 3); \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} 1: assert(*iter == 4); \textcolor{keywordflow}{break};
+        \}
+        ++idx;
+    \}
+
+    \hyperlink{lift__vec_8h_a2e13eb1aa433c210e93429d81d2ecd42}{lift\_vec\_push\_back}(v,5);
+    \hyperlink{lift__vec_8h_ab4b8005f19e2530b27dc643cc32a3be4}{LIFT\_PRINTF}(v);
+    assert(\hyperlink{lift__vec_8h_a0086251626d7d199046365bfb574c4e2}{LIFT\_VEC\_VALID}(v));
+    assert(\hyperlink{lift__vec_8h_a7ad8de6e820ee182d665d85f610032d2}{LIFT\_VEC\_SAFE}(v, 2));
+    assert(\hyperlink{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}{lift\_vec\_size}(v) == 3);
+    assert(!\hyperlink{lift__vec_8h_a4d7e791410bec3b894b04ad7435816f0}{lift\_vec\_empty}(v));
+    assert(\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v) + 3 == \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(v));
+    assert(3 == *\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v));
+    assert(3 == \hyperlink{lift__vec_8h_a204b51e518a7769c7eee86c4e40abd2a}{lift\_vec\_front\_get}(v));
+    assert(5 == \hyperlink{lift__vec_8h_afe2326662ff61f6073ad1728558ba2d9}{lift\_vec\_back\_get}(v));
+    assert(3 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 0));
+    assert(4 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 1));
+    assert(5 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 2));
+    \hyperlink{lift__vec_8h_a328160cf98397947580f3854727c1f2a}{LIFT\_VEC\_FOR\_EACH\_IDX}(idx, v) \{
+        assert((idx == 0) || (idx == 1) || (idx == 2));
+    \}
+    idx = 0;
+    \hyperlink{lift__vec_8h_ae51b80ad7deb1a897534ec12405568db}{LIFT\_VEC\_FOR\_EACH\_ITER}(iter, v) \{
+        assert((idx == 0) || (idx == 1) || (idx == 2));
+        \textcolor{keywordflow}{switch} (idx) \{
+        \textcolor{keywordflow}{case} 0: assert(*iter == 3); \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} 1: assert(*iter == 4); \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} 2: assert(*iter == 5); \textcolor{keywordflow}{break};
+        \}
+        ++idx;
+    \}
+
+    \hyperlink{lift__vec_8h_a83bc357f9b6ffd618f89af9eca3bf5df}{lift\_vec\_pop\_back}(v);
+    \hyperlink{lift__vec_8h_ab4b8005f19e2530b27dc643cc32a3be4}{LIFT\_PRINTF}(v);
+    assert(\hyperlink{lift__vec_8h_a0086251626d7d199046365bfb574c4e2}{LIFT\_VEC\_VALID}(v));
+    assert(\hyperlink{lift__vec_8h_a7ad8de6e820ee182d665d85f610032d2}{LIFT\_VEC\_SAFE}(v, 1));
+    assert(\hyperlink{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}{lift\_vec\_size}(v) == 2);
+    assert(!\hyperlink{lift__vec_8h_a4d7e791410bec3b894b04ad7435816f0}{lift\_vec\_empty}(v));
+    assert(\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v) + 2 == \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(v));
+    assert(3 == *\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v));
+    assert(3 == \hyperlink{lift__vec_8h_a204b51e518a7769c7eee86c4e40abd2a}{lift\_vec\_front\_get}(v));
+    assert(4 == \hyperlink{lift__vec_8h_afe2326662ff61f6073ad1728558ba2d9}{lift\_vec\_back\_get}(v));
+    assert(3 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 0));
+    assert(4 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 1));
+    \hyperlink{lift__vec_8h_a328160cf98397947580f3854727c1f2a}{LIFT\_VEC\_FOR\_EACH\_IDX}(idx, v) \{
+        assert((idx == 0) || (idx == 1));
+    \}
+    idx = 0;
+    \hyperlink{lift__vec_8h_ae51b80ad7deb1a897534ec12405568db}{LIFT\_VEC\_FOR\_EACH\_ITER}(iter, v) \{
+        assert((idx == 0) || (idx == 1));
+        \textcolor{keywordflow}{switch} (idx) \{
+        \textcolor{keywordflow}{case} 0: assert(*iter == 3); \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} 1: assert(*iter == 4); \textcolor{keywordflow}{break};
+        \}
+        ++idx;
+    \}
+
+    \hyperlink{lift__vec_8h_a2e13eb1aa433c210e93429d81d2ecd42}{lift\_vec\_push\_back}(v,6);
+    \hyperlink{lift__vec_8h_ab4b8005f19e2530b27dc643cc32a3be4}{LIFT\_PRINTF}(v);
+    assert(\hyperlink{lift__vec_8h_a0086251626d7d199046365bfb574c4e2}{LIFT\_VEC\_VALID}(v));
+    assert(\hyperlink{lift__vec_8h_a7ad8de6e820ee182d665d85f610032d2}{LIFT\_VEC\_SAFE}(v, 2));
+    assert(\hyperlink{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}{lift\_vec\_size}(v) == 3);
+    assert(!\hyperlink{lift__vec_8h_a4d7e791410bec3b894b04ad7435816f0}{lift\_vec\_empty}(v));
+    assert(\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v) + 3 == \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(v));
+    assert(3 == *\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v));
+    assert(3 == \hyperlink{lift__vec_8h_a204b51e518a7769c7eee86c4e40abd2a}{lift\_vec\_front\_get}(v));
+    assert(6 == \hyperlink{lift__vec_8h_afe2326662ff61f6073ad1728558ba2d9}{lift\_vec\_back\_get}(v));
+    assert(3 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 0));
+    assert(4 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 1));
+    assert(6 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 2));
+    \hyperlink{lift__vec_8h_a328160cf98397947580f3854727c1f2a}{LIFT\_VEC\_FOR\_EACH\_IDX}(idx, v) \{
+        assert((idx == 0) || (idx == 1) || (idx == 2));
+    \}
+    idx = 0;
+    \hyperlink{lift__vec_8h_ae51b80ad7deb1a897534ec12405568db}{LIFT\_VEC\_FOR\_EACH\_ITER}(iter, v) \{
+        assert((idx == 0) || (idx == 1) || (idx == 2));
+        \textcolor{keywordflow}{switch} (idx) \{
+        \textcolor{keywordflow}{case} 0: assert(*iter == 3); \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} 1: assert(*iter == 4); \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} 2: assert(*iter == 6); \textcolor{keywordflow}{break};
+        \}
+        ++idx;
+    \}
+
+    \hyperlink{lift__vec_8h_ac79c356c99fcb743ceb51e91f7fc3375}{lift\_vec\_insert}(v, \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v) + 2, 5);
+    \hyperlink{lift__vec_8h_ab4b8005f19e2530b27dc643cc32a3be4}{LIFT\_PRINTF}(v);
+    assert(\hyperlink{lift__vec_8h_a0086251626d7d199046365bfb574c4e2}{LIFT\_VEC\_VALID}(v));
+    assert(\hyperlink{lift__vec_8h_a7ad8de6e820ee182d665d85f610032d2}{LIFT\_VEC\_SAFE}(v, 3));
+    assert(\hyperlink{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}{lift\_vec\_size}(v) == 4);
+    assert(!\hyperlink{lift__vec_8h_a4d7e791410bec3b894b04ad7435816f0}{lift\_vec\_empty}(v));
+    assert(\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v) + 4 == \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(v));
+    assert(3 == *\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v));
+    assert(3 == \hyperlink{lift__vec_8h_a204b51e518a7769c7eee86c4e40abd2a}{lift\_vec\_front\_get}(v));
+    assert(6 == \hyperlink{lift__vec_8h_afe2326662ff61f6073ad1728558ba2d9}{lift\_vec\_back\_get}(v));
+    assert(3 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 0));
+    assert(4 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 1));
+    assert(5 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 2));
+    assert(6 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 3));
+    \hyperlink{lift__vec_8h_a328160cf98397947580f3854727c1f2a}{LIFT\_VEC\_FOR\_EACH\_IDX}(idx, v) \{
+        assert(idx <= 3);
+    \}
+    idx = 0;
+    \hyperlink{lift__vec_8h_ae51b80ad7deb1a897534ec12405568db}{LIFT\_VEC\_FOR\_EACH\_ITER}(iter, v) \{
+        assert(idx <= 3);
+        \textcolor{keywordflow}{switch} (idx) \{
+        \textcolor{keywordflow}{case} 0: assert(*iter == 3); \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} 1: assert(*iter == 4); \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} 2: assert(*iter == 5); \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} 3: assert(*iter == 6); \textcolor{keywordflow}{break};
+        \}
+        ++idx;
+    \}
+
+    \hyperlink{lift__vec_8h_ab3ec35f976e8f95f2a341763a6599a8a}{lift\_vec\_erase}(v, \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v)+1);
+    \hyperlink{lift__vec_8h_ab4b8005f19e2530b27dc643cc32a3be4}{LIFT\_PRINTF}(v);
+    assert(\hyperlink{lift__vec_8h_a0086251626d7d199046365bfb574c4e2}{LIFT\_VEC\_VALID}(v));
+    assert(\hyperlink{lift__vec_8h_a7ad8de6e820ee182d665d85f610032d2}{LIFT\_VEC\_SAFE}(v, 2));
+    assert(\hyperlink{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}{lift\_vec\_size}(v) == 3);
+    assert(!\hyperlink{lift__vec_8h_a4d7e791410bec3b894b04ad7435816f0}{lift\_vec\_empty}(v));
+    assert(\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v) + 3 == \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(v));
+    assert(3 == *\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v));
+    assert(3 == \hyperlink{lift__vec_8h_a204b51e518a7769c7eee86c4e40abd2a}{lift\_vec\_front\_get}(v));
+    assert(6 == \hyperlink{lift__vec_8h_afe2326662ff61f6073ad1728558ba2d9}{lift\_vec\_back\_get}(v));
+    assert(3 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 0));
+    assert(5 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 1));
+    assert(6 == \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\_vec\_get}(v, 2));
+    \hyperlink{lift__vec_8h_a328160cf98397947580f3854727c1f2a}{LIFT\_VEC\_FOR\_EACH\_IDX}(idx, v) \{
+        assert((idx == 0) || (idx == 1) || (idx == 2));
+    \}
+    idx = 0;
+    \hyperlink{lift__vec_8h_ae51b80ad7deb1a897534ec12405568db}{LIFT\_VEC\_FOR\_EACH\_ITER}(iter, v) \{
+        assert((idx == 0) || (idx == 1) || (idx == 2));
+        \textcolor{keywordflow}{switch} (idx) \{
+        \textcolor{keywordflow}{case} 0: assert(*iter == 3); \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} 1: assert(*iter == 5); \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} 2: assert(*iter == 6); \textcolor{keywordflow}{break};
+        \}
+        ++idx;
+    \}
+
+    \hyperlink{lift__vec_8h_a88b3bd2c4be95af37a75a6576b2ffafe}{lift\_vec\_find}(v, 5, iter);
+    assert(iter == \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v) + 1);
+    assert(*iter == 5);
+    \hyperlink{lift__vec_8h_a88b3bd2c4be95af37a75a6576b2ffafe}{lift\_vec\_find}(v, 3, iter);
+    assert(iter == \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v));
+    assert(*iter == 3);
+    \hyperlink{lift__vec_8h_a88b3bd2c4be95af37a75a6576b2ffafe}{lift\_vec\_find}(v, 6, iter);
+    assert(iter == \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v) + 2);
+    assert(*iter == 6);
+    \hyperlink{lift__vec_8h_a88b3bd2c4be95af37a75a6576b2ffafe}{lift\_vec\_find}(v, 555, iter);
+    assert(iter == \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(v));
+
+    \hyperlink{lift__vec_8h_a83bc357f9b6ffd618f89af9eca3bf5df}{lift\_vec\_pop\_back}(v);
+    \hyperlink{lift__vec_8h_a83bc357f9b6ffd618f89af9eca3bf5df}{lift\_vec\_pop\_back}(v);
+    \hyperlink{lift__vec_8h_a83bc357f9b6ffd618f89af9eca3bf5df}{lift\_vec\_pop\_back}(v);
+    assert(\hyperlink{lift__vec_8h_a0086251626d7d199046365bfb574c4e2}{LIFT\_VEC\_VALID}(v));
+    assert(\hyperlink{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}{lift\_vec\_size}(v) == 0);
+    assert(\hyperlink{lift__vec_8h_a4d7e791410bec3b894b04ad7435816f0}{lift\_vec\_empty}(v));
+    assert(\hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(v) == \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(v));
+
+    \hyperlink{lift__vec_8h_acf6d249b5825f99d1b9bf4cd42454cd3}{lift\_vec\_free}(v);
+    assert(!\hyperlink{lift__vec_8h_a0086251626d7d199046365bfb574c4e2}{LIFT\_VEC\_VALID}(v));
+
+    \textcolor{keywordflow}{return} 0;
+\}
+\end{DoxyCodeInclude}
+ 

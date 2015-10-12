@@ -1,3 +1,4 @@
+/* -*- c-file-style:"stroustrup"; indent-tabs-mode: nil -*- */
 #if !defined INC_LIFT_REALLOC
 #define INC_LIFT_REALLOC
 

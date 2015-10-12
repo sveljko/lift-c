@@ -1,3 +1,4 @@
+/* -*- c-file-style:"stroustrup"; indent-tabs-mode: nil -*- */
 #include "lift_free_and_null.h"
 
 #include <stdio.h>

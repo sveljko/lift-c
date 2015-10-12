@@ -1,3 +1,4 @@
+/* -*- c-file-style:"stroustrup"; indent-tabs-mode: nil -*- */
 #include "lift_arealloc.h"
 
 #include <stdio.h>

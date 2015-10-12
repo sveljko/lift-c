@@ -2,6 +2,7 @@
 }
 
 \begin{DoxyCodeInclude}
+\textcolor{comment}{/* -*- c-file-style:"stroustrup"; indent-tabs-mode: nil -*- */}
 \textcolor{preprocessor}{#include "\hyperlink{lift__free__and__null_8h}{lift\_free\_and\_null.h}"}
 
 \textcolor{preprocessor}{#include <stdio.h>}
@@ -22,7 +23,7 @@
 
     s = malloc(10000);
     printf(\textcolor{stringliteral}{"s = %p; after yet another malloc()\(\backslash\)n"}, s);
-    \hyperlink{lift__free__and__null_8h_ae429d1e4d6d8ae834f8174d6cf0b9e10}{lift\_nfree}(s+2);
+    \hyperlink{lift__free__and__null_8h_ae429d1e4d6d8ae834f8174d6cf0b9e10}{lift\_nfree}(s);
     printf(\textcolor{stringliteral}{"s = %p; after lift\_nfree()\(\backslash\)n"}, s);
 
     \textcolor{keywordflow}{return} 0;

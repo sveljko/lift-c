@@ -85,21 +85,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">lift_arealloc.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="lift__arealloc_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#if !defined INC_LIFT_REALLOC</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define INC_LIFT_REALLOC</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<a href="lift__arealloc_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* -*- c-file-style:&quot;stroustrup&quot;; indent-tabs-mode: nil -*- */</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#if !defined INC_LIFT_REALLOC</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define INC_LIFT_REALLOC</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">void</span> *<a class="code" href="lift__arealloc_8h.html#a2193a6bf115f8542b19f0225cfb6a306">lift_arealloc_implementation</a>(<span class="keywordtype">void</span> *ptrptr, <span class="keywordtype">size_t</span> members, <span class="keywordtype">size_t</span> size);</div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="lift__arealloc_8h.html#aa29066af0304aa4445b7e13ccff595de">   97</a></span>&#160;<span class="preprocessor">#define lift_arealloc(ptr, members) lift_arealloc_implementation(&amp;(ptr),(members), sizeof *(ptr))</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* #defined INC_LIFT_REALLOC */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">void</span> *<a class="code" href="lift__arealloc_8h.html#a2193a6bf115f8542b19f0225cfb6a306">lift_arealloc_implementation</a>(<span class="keywordtype">void</span> *ptrptr, <span class="keywordtype">size_t</span> members, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="lift__arealloc_8h.html#aa29066af0304aa4445b7e13ccff595de">   98</a></span>&#160;<span class="preprocessor">#define lift_arealloc(ptr, members) lift_arealloc_implementation(&amp;(ptr),(members), sizeof *(ptr))</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* #defined INC_LIFT_REALLOC */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="lift__arealloc_8h_html_a2193a6bf115f8542b19f0225cfb6a306"><div class="ttname"><a href="lift__arealloc_8h.html#a2193a6bf115f8542b19f0225cfb6a306">lift_arealloc_implementation</a></div><div class="ttdeci">void * lift_arealloc_implementation(void *ptrptr, size_t members, size_t size)</div><div class="ttdoc">A safe alternative to realloc() for arrays. </div><div class="ttdef"><b>Definition:</b> lift_arealloc.c:11</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 5 2015 16:28:10 for LIFT - Lift Is not a Framework or Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 12 2015 23:36:25 for LIFT - Lift Is not a Framework or Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

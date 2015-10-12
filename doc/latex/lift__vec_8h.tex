@@ -1,0 +1,415 @@
+\hypertarget{lift__vec_8h}{\section{lift\-\_\-vec.\-h File Reference}
+\label{lift__vec_8h}\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}}
+}
+
+
+A vector generic type for C.  
+
+
+{\ttfamily \#include \char`\"{}lift\-\_\-arealloc.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lift\-\_\-free\-\_\-and\-\_\-null.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+Include dependency graph for lift\-\_\-vec.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lift__vec_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{lift__vec_8h_a953ac441707c2affe21bcd56a639c502}{L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-V\-E\-C}(typ)~struct \{ unsigned n; unsigned c; typ $\ast$p; \}
+\begin{DoxyCompactList}\small\item\em Declare a vector for the given type {\ttfamily typ}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_a5f062efdf1ed0cb5bd5ea58c2e3c380d}{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-V\-A\-R}(typ, var)~L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-V\-E\-C\-T(typ) =  \{ 0, 0, N\-U\-L\-L \}
+\begin{DoxyCompactList}\small\item\em Declare a variable of the vector of type {\ttfamily typ}, with the name (symbol) {\ttfamily var}. \end{DoxyCompactList}\item 
+\hypertarget{lift__vec_8h_ad9081bbf2d35f6e47bfac8b758b7ea48}{\#define {\bfseries L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-I\-N\-I\-T}(var)~memset(\&(var), 0, sizeof (var))}\label{lift__vec_8h_ad9081bbf2d35f6e47bfac8b758b7ea48}
+
+\item 
+\#define \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\-\_\-vec\-\_\-begin}(var)~((var).p)
+\begin{DoxyCompactList}\small\item\em Gives an iterator (pointer, really) to the begining of the vector {\ttfamily var}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\-\_\-vec\-\_\-end}(var)~((var).p + (var).n)
+\begin{DoxyCompactList}\small\item\em Gives an iterator (pointer, really) to the end of the vector {\ttfamily var}. \end{DoxyCompactList}\item 
+\hypertarget{lift__vec_8h_ab6b2d109dfea9c0f2f186c9add41e669}{\#define {\bfseries L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-V\-A\-L\-I\-D\-\_\-\-I\-T\-E\-R\-A\-T\-O\-R}(var, iter)~(((iter) $>$= \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\-\_\-vec\-\_\-begin}(var)) \&\& (((iter) $<$= \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\-\_\-vec\-\_\-end}(var))))}\label{lift__vec_8h_ab6b2d109dfea9c0f2f186c9add41e669}
+
+\item 
+\hypertarget{lift__vec_8h_a460948ccbbb7690e71a9fdb1051b97a8}{\#define {\bfseries L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-S\-A\-F\-E\-\_\-\-I\-T\-E\-R\-A\-T\-O\-R}(var, iter)~(((iter) $>$= \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\-\_\-vec\-\_\-begin}(var)) \&\& (((iter) $<$ \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\-\_\-vec\-\_\-end}(var))))}\label{lift__vec_8h_a460948ccbbb7690e71a9fdb1051b97a8}
+
+\item 
+\hypertarget{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}{\#define \hyperlink{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}{lift\-\_\-vec\-\_\-size}(var)~((var).n)}\label{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of elements in the vector {\ttfamily var}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_a89038108b54f4ae2ca515776edc3b8ea}{lift\-\_\-vec\-\_\-resize}(var, newsize)
+\begin{DoxyCompactList}\small\item\em Resizes the vector {\ttfamily var} to have {\ttfamily newsize} elements. \end{DoxyCompactList}\item 
+\hypertarget{lift__vec_8h_a80ec213390d3900ec81e15c1b0932f24}{\#define \hyperlink{lift__vec_8h_a80ec213390d3900ec81e15c1b0932f24}{lift\-\_\-vec\-\_\-capacity}(var)~((var).c)}\label{lift__vec_8h_a80ec213390d3900ec81e15c1b0932f24}
+
+\begin{DoxyCompactList}\small\item\em Returns the current capacity of the vectory {\ttfamily var}. \end{DoxyCompactList}\item 
+\hypertarget{lift__vec_8h_a4d7e791410bec3b894b04ad7435816f0}{\#define \hyperlink{lift__vec_8h_a4d7e791410bec3b894b04ad7435816f0}{lift\-\_\-vec\-\_\-empty}(var)~(0 == (var).n)}\label{lift__vec_8h_a4d7e791410bec3b894b04ad7435816f0}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the vectory {\ttfamily var} is empty (has no elements) \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_a5946d0be6518dfbe8d315503aa213adc}{lift\-\_\-vec\-\_\-reserve}(var, newcap)
+\begin{DoxyCompactList}\small\item\em Reserves the memory for vectory {\ttfamily var} to have place for {\ttfamily newcap} elements. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_a2e13eb1aa433c210e93429d81d2ecd42}{lift\-\_\-vec\-\_\-push\-\_\-back}(var, val)
+\begin{DoxyCompactList}\small\item\em Pushes the value {\ttfamily val} to the end of vector {\ttfamily var}, increasing the vector's size. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_a83bc357f9b6ffd618f89af9eca3bf5df}{lift\-\_\-vec\-\_\-pop\-\_\-back}(var)
+\begin{DoxyCompactList}\small\item\em Removes the last element of the vectory {\ttfamily var}, if the vector is not empty. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_ac79c356c99fcb743ceb51e91f7fc3375}{lift\-\_\-vec\-\_\-insert}(var, pos, val)
+\begin{DoxyCompactList}\small\item\em Inserts the value {\ttfamily val} into the vector {\ttfamily var} at iterator/position {\ttfamily pos}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_ab3ec35f976e8f95f2a341763a6599a8a}{lift\-\_\-vec\-\_\-erase}(var, pos)
+\begin{DoxyCompactList}\small\item\em Erases the element of the vector {\ttfamily var} at iterator/position {\ttfamily pos}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_acf6d249b5825f99d1b9bf4cd42454cd3}{lift\-\_\-vec\-\_\-free}(var)~\hyperlink{lift__free__and__null_8h_ae429d1e4d6d8ae834f8174d6cf0b9e10}{lift\-\_\-nfree}((var).p), (var).n = (var).c = 0
+\begin{DoxyCompactList}\small\item\em Once you're done with the vector, use this macro to free any resources (memory) that was allocated during its use. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_a7d624f15bbaa9253611a44b406b4c0a0}{lift\-\_\-vec\-\_\-front}(var)~\hyperlink{lift__vec_8h_a3f85aaaa1f14453788b811ffcd3c37d4}{lift\-\_\-vec\-\_\-at}(var, 0)
+\begin{DoxyCompactList}\small\item\em Allows you to set element at the front (beginning) of the vector. \end{DoxyCompactList}\item 
+\hypertarget{lift__vec_8h_a204b51e518a7769c7eee86c4e40abd2a}{\#define \hyperlink{lift__vec_8h_a204b51e518a7769c7eee86c4e40abd2a}{lift\-\_\-vec\-\_\-front\-\_\-get}(var)~(\hyperlink{lift__vec_8h_a3f85aaaa1f14453788b811ffcd3c37d4}{lift\-\_\-vec\-\_\-at}(var, 0))}\label{lift__vec_8h_a204b51e518a7769c7eee86c4e40abd2a}
+
+\begin{DoxyCompactList}\small\item\em Returns the element at the front (beginning) of the vector. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_a1f806932d91c072afa1b16d4a933d3d0}{lift\-\_\-vec\-\_\-back}(var)~\hyperlink{lift__vec_8h_a3f85aaaa1f14453788b811ffcd3c37d4}{lift\-\_\-vec\-\_\-at}((var), (var).n-\/1)
+\begin{DoxyCompactList}\small\item\em Allows you to set element at the back of the vector (last element). \end{DoxyCompactList}\item 
+\hypertarget{lift__vec_8h_afe2326662ff61f6073ad1728558ba2d9}{\#define \hyperlink{lift__vec_8h_afe2326662ff61f6073ad1728558ba2d9}{lift\-\_\-vec\-\_\-back\-\_\-get}(var)~(\hyperlink{lift__vec_8h_a3f85aaaa1f14453788b811ffcd3c37d4}{lift\-\_\-vec\-\_\-at}(var, (var).n-\/1))}\label{lift__vec_8h_afe2326662ff61f6073ad1728558ba2d9}
+
+\begin{DoxyCompactList}\small\item\em Returns the element at the front (beginning) of the vector. \end{DoxyCompactList}\item 
+\hypertarget{lift__vec_8h_accab99ecc2bf68085f004fe81c822112}{\#define \hyperlink{lift__vec_8h_accab99ecc2bf68085f004fe81c822112}{lift\-\_\-vec\-\_\-data}(var)~(var).p}\label{lift__vec_8h_accab99ecc2bf68085f004fe81c822112}
+
+\begin{DoxyCompactList}\small\item\em Returns the data (array pointer) of the vector {\ttfamily var}, which you can pass to some function that expects such things. \end{DoxyCompactList}\item 
+\hypertarget{lift__vec_8h_a0086251626d7d199046365bfb574c4e2}{\#define \hyperlink{lift__vec_8h_a0086251626d7d199046365bfb574c4e2}{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-V\-A\-L\-I\-D}(var)~((var).p != N\-U\-L\-L)}\label{lift__vec_8h_a0086251626d7d199046365bfb574c4e2}
+
+\begin{DoxyCompactList}\small\item\em Returns whether the vector {\ttfamily var} is valid. \end{DoxyCompactList}\item 
+\hypertarget{lift__vec_8h_a7ad8de6e820ee182d665d85f610032d2}{\#define \hyperlink{lift__vec_8h_a7ad8de6e820ee182d665d85f610032d2}{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-S\-A\-F\-E}(var, idx)~(idx $<$ \hyperlink{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}{lift\-\_\-vec\-\_\-size}(var))}\label{lift__vec_8h_a7ad8de6e820ee182d665d85f610032d2}
+
+\begin{DoxyCompactList}\small\item\em Returns whether it is safe to access the element at index {\ttfamily idx} of the vector {\ttfamily var}. \end{DoxyCompactList}\item 
+\hypertarget{lift__vec_8h_a3f85aaaa1f14453788b811ffcd3c37d4}{\#define \hyperlink{lift__vec_8h_a3f85aaaa1f14453788b811ffcd3c37d4}{lift\-\_\-vec\-\_\-at}(var, idx)~assert(\hyperlink{lift__vec_8h_a7ad8de6e820ee182d665d85f610032d2}{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-S\-A\-F\-E}(var,idx)), \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\-\_\-vec\-\_\-begin}(var)\mbox{[}idx\mbox{]}}\label{lift__vec_8h_a3f85aaaa1f14453788b811ffcd3c37d4}
+
+\begin{DoxyCompactList}\small\item\em Gives the element at index {\ttfamily idx} of the vector {\ttfamily var}, checking if it is safe to access it. \end{DoxyCompactList}\item 
+\hypertarget{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{\#define \hyperlink{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}{lift\-\_\-vec\-\_\-get}(var, idx)~(\hyperlink{lift__vec_8h_a3f85aaaa1f14453788b811ffcd3c37d4}{lift\-\_\-vec\-\_\-at}(var,idx))}\label{lift__vec_8h_aa141c82ad99aa01241f9f3bc33bf9987}
+
+\begin{DoxyCompactList}\small\item\em Returns the element at index {\ttfamily idx} of the vector {\ttfamily var}, checking if it is safe to access it. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_a328160cf98397947580f3854727c1f2a}{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-D\-X}(idx, var)~for (idx = 0; idx $<$ \hyperlink{lift__vec_8h_aa95dcb31fe93ca880d8f94232a71f0a3}{lift\-\_\-vec\-\_\-size}(var); ++idx)
+\begin{DoxyCompactList}\small\item\em A helper macro to execute a for-\/each loop on the vector {\ttfamily var}, accessing by the index {\ttfamily idx}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_ae51b80ad7deb1a897534ec12405568db}{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-T\-E\-R}(it, var)~for (it = \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\-\_\-vec\-\_\-begin}(var); it != \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\-\_\-vec\-\_\-end}(var); ++it)
+\begin{DoxyCompactList}\small\item\em A helper macro to execute a for-\/each loop on the vector {\ttfamily var}, accessing by the iterator/pointer {\ttfamily it}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_a88b3bd2c4be95af37a75a6576b2ffafe}{lift\-\_\-vec\-\_\-find}(var, val, rslt)
+\begin{DoxyCompactList}\small\item\em A helper macro to search for the value {\ttfamily val} in the vector {\ttfamily var}. \end{DoxyCompactList}\item 
+\hypertarget{lift__vec_8h_ab4b8005f19e2530b27dc643cc32a3be4}{\#define \hyperlink{lift__vec_8h_ab4b8005f19e2530b27dc643cc32a3be4}{L\-I\-F\-T\-\_\-\-P\-R\-I\-N\-T\-F}(var)~printf(\char`\"{}'\char`\"{}\#var \char`\"{}' lift\-\_\-vec\-: size=\%d, capacity=\%d, data=\%p\textbackslash{}n\char`\"{}, (var).n, (var).c, (var).p)}\label{lift__vec_8h_ab4b8005f19e2530b27dc643cc32a3be4}
+
+\begin{DoxyCompactList}\small\item\em A helper macro to printf-\/out the vector {\ttfamily var}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A vector generic type for C. It is modelled after the C++ (S\-T\-L) vector. It is a macro implementation, but some care was taken to make it as safe as possible\-:
+
+
+\begin{DoxyItemize}
+\item No variables are declared in the macros themselves
+\item Most macros are expressions
+\item There is a reasonable amount of checking done...
+\item ...and most type errors will be caught, with maybe ugly compiler errors
+\end{DoxyItemize}
+
+The only significant problem with this implementation is that {\itshape a} lot of parameters in these macros a evaluated more than once. So, you have to be careful not to pass expressions with side effects.
+
+\begin{DoxyAuthor}{Author}
+Srdjan Veljkovic 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+M\-I\-T License 
+\end{DoxyCopyright}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{lift__vec_8h_a953ac441707c2affe21bcd56a639c502}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-V\-E\-C@{L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-V\-E\-C}}
+\index{L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-V\-E\-C@{L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-V\-E\-C}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-V\-E\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-V\-E\-C(
+\begin{DoxyParamCaption}
+\item[{}]{typ}
+\end{DoxyParamCaption}
+)~struct \{ unsigned n; unsigned c; typ $\ast$p; \}}}\label{lift__vec_8h_a953ac441707c2affe21bcd56a639c502}
+
+
+Declare a vector for the given type {\ttfamily typ}. 
+
+A lot of the time you should {\ttfamily typedef} this. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__vec_8h_a1f806932d91c072afa1b16d4a933d3d0}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-back@{lift\-\_\-vec\-\_\-back}}
+\index{lift\-\_\-vec\-\_\-back@{lift\-\_\-vec\-\_\-back}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-back}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-back(
+\begin{DoxyParamCaption}
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~{\bf lift\-\_\-vec\-\_\-at}((var), (var).n-\/1)}}\label{lift__vec_8h_a1f806932d91c072afa1b16d4a933d3d0}
+
+
+Allows you to set element at the back of the vector (last element). 
+
+Use like\-: {\ttfamily \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\-\_\-vec\-\_\-end(v)} = 43;}. \hypertarget{lift__vec_8h_a09e49321f68f213ed563b36026507904}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-begin@{lift\-\_\-vec\-\_\-begin}}
+\index{lift\-\_\-vec\-\_\-begin@{lift\-\_\-vec\-\_\-begin}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-begin}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-begin(
+\begin{DoxyParamCaption}
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~((var).p)}}\label{lift__vec_8h_a09e49321f68f213ed563b36026507904}
+
+
+Gives an iterator (pointer, really) to the begining of the vector {\ttfamily var}. 
+
+This is the first element if vector is not empty. If the vector is empty, the only guarantee is that \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\-\_\-vec\-\_\-begin(v)} == \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\-\_\-vec\-\_\-end(v)}. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-end@{lift\-\_\-vec\-\_\-end}}
+\index{lift\-\_\-vec\-\_\-end@{lift\-\_\-vec\-\_\-end}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-end(
+\begin{DoxyParamCaption}
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~((var).p + (var).n)}}\label{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}
+
+
+Gives an iterator (pointer, really) to the end of the vector {\ttfamily var}. 
+
+This points to an element one past the last element of the vector, if vectory is not empty. If the vector is empty, the only guarantee is that \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\-\_\-vec\-\_\-begin(v)} == \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\-\_\-vec\-\_\-end(v)}. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__vec_8h_ab3ec35f976e8f95f2a341763a6599a8a}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-erase@{lift\-\_\-vec\-\_\-erase}}
+\index{lift\-\_\-vec\-\_\-erase@{lift\-\_\-vec\-\_\-erase}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-erase}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-erase(
+\begin{DoxyParamCaption}
+\item[{}]{var, }
+\item[{}]{pos}
+\end{DoxyParamCaption}
+)}}\label{lift__vec_8h_ab3ec35f976e8f95f2a341763a6599a8a}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(LIFT\_VEC\_SAFE\_ITERATOR(var, pos) ?                                 \(\backslash\)
+     (                                                                  \(\backslash\)
+         memmove((pos), (pos) + 1, ((var).n - 1 - ((pos) - \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(var))) * \textcolor{keyword}{sizeof} *(
+      var).p), \(\backslash\)
+         --(var).n,                                                     \(\backslash\)
+         (pos))                                                         \(\backslash\)
+     : NULL                                                             \(\backslash\)
+        )
+\end{DoxyCode}
+
+
+Erases the element of the vector {\ttfamily var} at iterator/position {\ttfamily pos}. 
+
+The {\ttfamily pos} has to be a safe iterator -\/ meaning, it can't be the \char`\"{}end\char`\"{}. On success, decreases the size of the vector {\ttfamily var} and returns the iterator at which the value {\ttfamily val} was erased. On error, returns N\-U\-L\-L. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__vec_8h_a88b3bd2c4be95af37a75a6576b2ffafe}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-find@{lift\-\_\-vec\-\_\-find}}
+\index{lift\-\_\-vec\-\_\-find@{lift\-\_\-vec\-\_\-find}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-find}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-find(
+\begin{DoxyParamCaption}
+\item[{}]{var, }
+\item[{}]{val, }
+\item[{}]{rslt}
+\end{DoxyParamCaption}
+)}}\label{lift__vec_8h_a88b3bd2c4be95af37a75a6576b2ffafe}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{for} (rslt = \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(var); rslt != \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(var); ++rslt) \{ \(\backslash\)
+        if (*rslt == (val)) \{                                           \(\backslash\)
+            break;                                                      \(\backslash\)
+        \}                                                               \(\backslash\)
+    \}
+\end{DoxyCode}
+
+
+A helper macro to search for the value {\ttfamily val} in the vector {\ttfamily var}. 
+
+The result will be stored in the iterator/pointer {\ttfamily rslt}, that you must provide. On success, it will give a safe iterator/position at which the given value was found. On failure, it will give the end iterator. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__vec_8h_a328160cf98397947580f3854727c1f2a}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-D\-X@{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-D\-X}}
+\index{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-D\-X@{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-D\-X}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-D\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-D\-X(
+\begin{DoxyParamCaption}
+\item[{}]{idx, }
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~for (idx = 0; idx $<$ {\bf lift\-\_\-vec\-\_\-size}(var); ++idx)}}\label{lift__vec_8h_a328160cf98397947580f3854727c1f2a}
+
+
+A helper macro to execute a for-\/each loop on the vector {\ttfamily var}, accessing by the index {\ttfamily idx}. 
+
+You have to declare the variable {\ttfamily idx}. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__vec_8h_ae51b80ad7deb1a897534ec12405568db}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-T\-E\-R@{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-T\-E\-R}}
+\index{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-T\-E\-R@{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-T\-E\-R}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-T\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-T\-E\-R(
+\begin{DoxyParamCaption}
+\item[{}]{it, }
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~for (it = {\bf lift\-\_\-vec\-\_\-begin}(var); it != {\bf lift\-\_\-vec\-\_\-end}(var); ++it)}}\label{lift__vec_8h_ae51b80ad7deb1a897534ec12405568db}
+
+
+A helper macro to execute a for-\/each loop on the vector {\ttfamily var}, accessing by the iterator/pointer {\ttfamily it}. 
+
+You have to declare the variable {\ttfamily it}. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__vec_8h_acf6d249b5825f99d1b9bf4cd42454cd3}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-free@{lift\-\_\-vec\-\_\-free}}
+\index{lift\-\_\-vec\-\_\-free@{lift\-\_\-vec\-\_\-free}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-free(
+\begin{DoxyParamCaption}
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~{\bf lift\-\_\-nfree}((var).p), (var).n = (var).c = 0}}\label{lift__vec_8h_acf6d249b5825f99d1b9bf4cd42454cd3}
+
+
+Once you're done with the vector, use this macro to free any resources (memory) that was allocated during its use. 
+
+After a call to this, vector is invalid. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__vec_8h_a7d624f15bbaa9253611a44b406b4c0a0}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-front@{lift\-\_\-vec\-\_\-front}}
+\index{lift\-\_\-vec\-\_\-front@{lift\-\_\-vec\-\_\-front}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-front}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-front(
+\begin{DoxyParamCaption}
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~{\bf lift\-\_\-vec\-\_\-at}(var, 0)}}\label{lift__vec_8h_a7d624f15bbaa9253611a44b406b4c0a0}
+
+
+Allows you to set element at the front (beginning) of the vector. 
+
+Use like\-: {\ttfamily \hyperlink{lift__vec_8h_a7d624f15bbaa9253611a44b406b4c0a0}{lift\-\_\-vec\-\_\-front(v)} = 3;}. \hypertarget{lift__vec_8h_ac79c356c99fcb743ceb51e91f7fc3375}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-insert@{lift\-\_\-vec\-\_\-insert}}
+\index{lift\-\_\-vec\-\_\-insert@{lift\-\_\-vec\-\_\-insert}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-insert(
+\begin{DoxyParamCaption}
+\item[{}]{var, }
+\item[{}]{pos, }
+\item[{}]{val}
+\end{DoxyParamCaption}
+)}}\label{lift__vec_8h_ac79c356c99fcb743ceb51e91f7fc3375}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(LIFT\_VEC\_VALID\_ITERATOR(var, pos) ?                                \(\backslash\)
+     ((((var).n < (var).c) || \hyperlink{lift__vec_8h_a5946d0be6518dfbe8d315503aa213adc}{lift\_vec\_reserve}(var, ((var).c+1))) ?     \(\backslash\)
+      (memmove((pos)+1, (pos), ((var).n - ((pos) - \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(var))) * \textcolor{keyword}{sizeof} *(var).p), 
+      \(\backslash\)
+       *(pos) = val,                                                    \(\backslash\)
+       ++(var).n,                                                       \(\backslash\)
+       (pos))                                                           \(\backslash\)
+      : NULL)                                                           \(\backslash\)
+     : NULL                                                             \(\backslash\)
+        )
+\end{DoxyCode}
+
+
+Inserts the value {\ttfamily val} into the vector {\ttfamily var} at iterator/position {\ttfamily pos}. 
+
+The {\ttfamily pos} has to be a valid pointer -\/ which includes the \char`\"{}end\char`\"{} pointer (if you pass the end, you will insert at the end of the vector, just like \hyperlink{lift__vec_8h_a2e13eb1aa433c210e93429d81d2ecd42}{lift\-\_\-vec\-\_\-push\-\_\-back()}). On success, increases the size of the vector {\ttfamily var} and returns the iterator at which the value {\ttfamily val} was inserted. On error, returns N\-U\-L\-L. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__vec_8h_a83bc357f9b6ffd618f89af9eca3bf5df}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-pop\-\_\-back@{lift\-\_\-vec\-\_\-pop\-\_\-back}}
+\index{lift\-\_\-vec\-\_\-pop\-\_\-back@{lift\-\_\-vec\-\_\-pop\-\_\-back}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-pop\-\_\-back}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-pop\-\_\-back(
+\begin{DoxyParamCaption}
+\item[{}]{var}
+\end{DoxyParamCaption}
+)}}\label{lift__vec_8h_a83bc357f9b6ffd618f89af9eca3bf5df}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((var).n > 0) ?                                                    \(\backslash\)
+     (                                                                  \(\backslash\)
+         --(var).n,                                                     \(\backslash\)
+         \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(var))                                             \(\backslash\)
+     : NULL                                                             \(\backslash\)
+        )
+\end{DoxyCode}
+
+
+Removes the last element of the vectory {\ttfamily var}, if the vector is not empty. 
+
+If the vector is not empty, returns N\-U\-L\-L. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__vec_8h_a2e13eb1aa433c210e93429d81d2ecd42}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-push\-\_\-back@{lift\-\_\-vec\-\_\-push\-\_\-back}}
+\index{lift\-\_\-vec\-\_\-push\-\_\-back@{lift\-\_\-vec\-\_\-push\-\_\-back}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-push\-\_\-back}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-push\-\_\-back(
+\begin{DoxyParamCaption}
+\item[{}]{var, }
+\item[{}]{val}
+\end{DoxyParamCaption}
+)}}\label{lift__vec_8h_a2e13eb1aa433c210e93429d81d2ecd42}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+((((var).n < (var).c) || \hyperlink{lift__vec_8h_a5946d0be6518dfbe8d315503aa213adc}{lift\_vec\_reserve}(var, ((var).c+1))) ?      \(\backslash\)
+     (                                  \(\backslash\)
+         (var).p[(var).n++] = val,                                      \(\backslash\)
+         0)                                                             \(\backslash\)
+     : -1                                                               \(\backslash\)
+        )
+\end{DoxyCode}
+
+
+Pushes the value {\ttfamily val} to the end of vector {\ttfamily var}, increasing the vector's size. 
+
+If successful, returns 0, otherwise -\/1. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__vec_8h_a5946d0be6518dfbe8d315503aa213adc}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-reserve@{lift\-\_\-vec\-\_\-reserve}}
+\index{lift\-\_\-vec\-\_\-reserve@{lift\-\_\-vec\-\_\-reserve}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-reserve}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-reserve(
+\begin{DoxyParamCaption}
+\item[{}]{var, }
+\item[{}]{newcap}
+\end{DoxyParamCaption}
+)}}\label{lift__vec_8h_a5946d0be6518dfbe8d315503aa213adc}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+((((var).c < (newcap)) && \hyperlink{lift__arealloc_8h_aa29066af0304aa4445b7e13ccff595de}{lift\_arealloc}((var).p, (newcap)+1)) ?     \(\backslash\)
+     (                                  \(\backslash\)
+         (var).c = (newcap),                                            \(\backslash\)
+         (newcap))                                                      \(\backslash\)
+     : 0                                                                \(\backslash\)
+        )
+\end{DoxyCode}
+
+
+Reserves the memory for vectory {\ttfamily var} to have place for {\ttfamily newcap} elements. 
+
+\hypertarget{lift__vec_8h_a89038108b54f4ae2ca515776edc3b8ea}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-resize@{lift\-\_\-vec\-\_\-resize}}
+\index{lift\-\_\-vec\-\_\-resize@{lift\-\_\-vec\-\_\-resize}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-resize}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-resize(
+\begin{DoxyParamCaption}
+\item[{}]{var, }
+\item[{}]{newsize}
+\end{DoxyParamCaption}
+)}}\label{lift__vec_8h_a89038108b54f4ae2ca515776edc3b8ea}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+(((var.n < newsize) && \hyperlink{lift__vec_8h_a5946d0be6518dfbe8d315503aa213adc}{lift\_vec\_reserve}(var, newsize)) ?        \(\backslash\)
+     (                                  \(\backslash\)
+         (var).n = (newsize),                                           \(\backslash\)
+         (newsize))                                                     \(\backslash\)
+     : 0                                                                \(\backslash\)
+        )
+\end{DoxyCode}
+
+
+Resizes the vector {\ttfamily var} to have {\ttfamily newsize} elements. 
+
+If vector needs to be enlarged, the contents of the new elements is not defined. \begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]This doesn't handle all cases yet \end{DoxyRefDesc}
+\hypertarget{lift__vec_8h_a5f062efdf1ed0cb5bd5ea58c2e3c380d}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-V\-A\-R@{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-V\-A\-R}}
+\index{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-V\-A\-R@{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-V\-A\-R}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-V\-A\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-V\-A\-R(
+\begin{DoxyParamCaption}
+\item[{}]{typ, }
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-V\-E\-C\-T(typ) =  \{ 0, 0, N\-U\-L\-L \}}}\label{lift__vec_8h_a5f062efdf1ed0cb5bd5ea58c2e3c380d}
+
+
+Declare a variable of the vector of type {\ttfamily typ}, with the name (symbol) {\ttfamily var}. 
+
+Be aware that, while macros will work on this variable, it's type will not be the same as other variables declared with this macro in C99 and newer versions. To solve that, define a type with {\ttfamily typedef L\-I\-F\-T\-\_\-\-D\-E\-L\-\_\-\-V\-E\-C(typ)}, then a variable of such type and then use L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-I\-N\-I\-T() to initialize it.
+
+\begin{DoxySeeAlso}{See Also}
+L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-I\-N\-I\-T 
+\end{DoxySeeAlso}

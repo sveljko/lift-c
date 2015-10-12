@@ -7,11 +7,11 @@
 
 var indexSectionsWithContent =
 {
-  0: "l",
+  0: "lt",
   1: "l",
   2: "l",
   3: "l",
-  4: "l"
+  4: "lt"
 };
 
 var indexSectionNames =
