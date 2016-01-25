@@ -17,6 +17,14 @@ Include dependency graph for lift\-\_\-vec.\-h\-:\nopagebreak
 \includegraphics[width=350pt]{lift__vec_8h__incl}
 \end{center}
 \end{figure}
+This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=134pt]{lift__vec_8h__dep__incl}
+\end{center}
+\end{figure}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -91,6 +99,10 @@ Include dependency graph for lift\-\_\-vec.\-h\-:\nopagebreak
 \begin{DoxyCompactList}\small\item\em A helper macro to execute a for-\/each loop on the vector {\ttfamily var}, accessing by the iterator/pointer {\ttfamily it}. \end{DoxyCompactList}\item 
 \#define \hyperlink{lift__vec_8h_a88b3bd2c4be95af37a75a6576b2ffafe}{lift\-\_\-vec\-\_\-find}(var, val, rslt)
 \begin{DoxyCompactList}\small\item\em A helper macro to search for the value {\ttfamily val} in the vector {\ttfamily var}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__vec_8h_a998bcb2d615941961ec73da0630a5479}{lift\-\_\-vec\-\_\-find\-\_\-if}(var, predicate, rslt)
+\begin{DoxyCompactList}\small\item\em A helper macro to search for the element position in the vector {\ttfamily var} that satisfies the {\ttfamily predicate}. \end{DoxyCompactList}\item 
+\#define {\bfseries lift\-\_\-vec\-\_\-bsearch}(var, val, rslt, aux)
+\item 
 \hypertarget{lift__vec_8h_ab4b8005f19e2530b27dc643cc32a3be4}{\#define \hyperlink{lift__vec_8h_ab4b8005f19e2530b27dc643cc32a3be4}{L\-I\-F\-T\-\_\-\-P\-R\-I\-N\-T\-F}(var)~printf(\char`\"{}'\char`\"{}\#var \char`\"{}' lift\-\_\-vec\-: size=\%d, capacity=\%d, data=\%p\textbackslash{}n\char`\"{}, (var).n, (var).c, (var).p)}\label{lift__vec_8h_ab4b8005f19e2530b27dc643cc32a3be4}
 
 \begin{DoxyCompactList}\small\item\em A helper macro to printf-\/out the vector {\ttfamily var}. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -157,6 +169,32 @@ Gives an iterator (pointer, really) to the begining of the vector {\ttfamily var
 This is the first element if vector is not empty. If the vector is empty, the only guarantee is that \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\-\_\-vec\-\_\-begin(v)} == \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\-\_\-vec\-\_\-end(v)}. \begin{Desc}
 \item[Examples\-: ]\par
 \hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__vec_8h_a406fc13f110c4eeebbc75ed26437b9f7}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-bsearch@{lift\-\_\-vec\-\_\-bsearch}}
+\index{lift\-\_\-vec\-\_\-bsearch@{lift\-\_\-vec\-\_\-bsearch}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-bsearch}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-bsearch(
+\begin{DoxyParamCaption}
+\item[{}]{var, }
+\item[{}]{val, }
+\item[{}]{rslt, }
+\item[{}]{aux}
+\end{DoxyParamCaption}
+)}}\label{lift__vec_8h_a406fc13f110c4eeebbc75ed26437b9f7}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{for} (rslt = \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(var), aux = \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(var); rslt < aux; ) \{ \(\backslash\)
+        void *probe\_ =  rslt + (aux - rslt) / 2;                        \(\backslash\)
+        if (val == *(rslt + (aux - rslt) / 2)) \{                        \(\backslash\)
+            rslt = probe\_;                                              \(\backslash\)
+            break;                                                      \(\backslash\)
+        \}                                                               \(\backslash\)
+        else \textcolor{keywordflow}{if} (val < *(rslt + (aux - rslt) / 2)) \{                    \(\backslash\)
+            aux = probe\_;                                               \(\backslash\)
+        \}                                                               \(\backslash\)
+        else \{                                                          \(\backslash\)
+            rslt = (\textcolor{keywordtype}{void}*)((\textcolor{keywordtype}{char}*)probe\_ + \textcolor{keyword}{sizeof} *rslt);               \(\backslash\)
+        \}                                                               \(\backslash\)
+    \}
+\end{DoxyCode}
 \hypertarget{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-end@{lift\-\_\-vec\-\_\-end}}
 \index{lift\-\_\-vec\-\_\-end@{lift\-\_\-vec\-\_\-end}!lift_vec.h@{lift\-\_\-vec.\-h}}
 \subsubsection[{lift\-\_\-vec\-\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-end(
@@ -218,7 +256,49 @@ The {\ttfamily pos} has to be a safe iterator -\/ meaning, it can't be the \char
 
 A helper macro to search for the value {\ttfamily val} in the vector {\ttfamily var}. 
 
-The result will be stored in the iterator/pointer {\ttfamily rslt}, that you must provide. On success, it will give a safe iterator/position at which the given value was found. On failure, it will give the end iterator. \begin{Desc}
+The result will be stored in the iterator/pointer {\ttfamily rslt}, that you must provide. On success, it will give a safe iterator/position at which the given value was found. On failure, it will give the end iterator.
+
+\begin{DoxyNote}{Note}
+this will only work if the type of the elements that are stored in the vector is such that its variables can be compared using the {\ttfamily ==} operator
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{lift__vec_8h_a998bcb2d615941961ec73da0630a5479}{lift\-\_\-vec\-\_\-find\-\_\-if} 
+\end{DoxySeeAlso}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__vec_8h_a998bcb2d615941961ec73da0630a5479}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!lift\-\_\-vec\-\_\-find\-\_\-if@{lift\-\_\-vec\-\_\-find\-\_\-if}}
+\index{lift\-\_\-vec\-\_\-find\-\_\-if@{lift\-\_\-vec\-\_\-find\-\_\-if}!lift_vec.h@{lift\-\_\-vec.\-h}}
+\subsubsection[{lift\-\_\-vec\-\_\-find\-\_\-if}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-vec\-\_\-find\-\_\-if(
+\begin{DoxyParamCaption}
+\item[{}]{var, }
+\item[{}]{predicate, }
+\item[{}]{rslt}
+\end{DoxyParamCaption}
+)}}\label{lift__vec_8h_a998bcb2d615941961ec73da0630a5479}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{for} (rslt = \hyperlink{lift__vec_8h_a09e49321f68f213ed563b36026507904}{lift\_vec\_begin}(var); rslt != \hyperlink{lift__vec_8h_a3e99cd489d53306dc19917e5ad400ba8}{lift\_vec\_end}(var); ++rslt) \{ \(\backslash\)
+        if (predicate) \{                                                \(\backslash\)
+            break;                                                      \(\backslash\)
+        \}                                                               \(\backslash\)
+    \}
+\end{DoxyCode}
+
+
+A helper macro to search for the element position in the vector {\ttfamily var} that satisfies the {\ttfamily predicate}. 
+
+The result will be stored in the iterator/pointer {\ttfamily rslt}, that you must provide. On success, it will give a safe iterator/position at which the given value was found. On failure, it will give the end iterator.
+
+The {\ttfamily predicate} is an expression that can operate on pretty much anything, but is expected to operate on the {\ttfamily rslt}, which will hold the current iterator in the vector. Use like\-: \begin{DoxyVerb}lift_vec_find_if(v, *iter == 55, iter); // vector of integers
+lift_vec_find_if(v, iter->a == 55, iter); // vector of some structures
+\end{DoxyVerb}
+
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{lift__vec_8h_a88b3bd2c4be95af37a75a6576b2ffafe}{lift\-\_\-vec\-\_\-find} 
+\end{DoxySeeAlso}
+\begin{Desc}
 \item[Examples\-: ]\par
 \hyperlink{lift_vec_example_8c-example}{lift\-\_\-vec\-\_\-example.\-c}.\end{Desc}
 \hypertarget{lift__vec_8h_a328160cf98397947580f3854727c1f2a}{\index{lift\-\_\-vec.\-h@{lift\-\_\-vec.\-h}!L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-D\-X@{L\-I\-F\-T\-\_\-\-V\-E\-C\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H\-\_\-\-I\-D\-X}}

@@ -18,6 +18,7 @@ int main()
     assert(lift_vec_empty(v));
     assert(lift_vec_begin(v) == lift_vec_end(v));
 
+    LIFT_PRINTF(v);
     lift_vec_push_back(v,3);
     LIFT_PRINTF(v);
     assert(LIFT_VEC_VALID(v));
@@ -209,6 +210,12 @@ int main()
     lift_vec_find(v, 555, iter);
     assert(iter == lift_vec_end(v));
 
+    lift_vec_find_if(v, *iter == 5, iter);
+    assert(iter == lift_vec_begin(v) + 1);
+    assert(*iter == 5);
+    lift_vec_find_if(v, *iter == 555, iter);
+    assert(iter == lift_vec_end(v));
+
     lift_vec_pop_back(v);
     lift_vec_pop_back(v);
     lift_vec_pop_back(v);
@@ -219,6 +226,7 @@ int main()
 
     lift_vec_free(v);
     assert(!LIFT_VEC_VALID(v));
+    LIFT_PRINTF(v);
 
     return 0;
 }

@@ -5,7 +5,7 @@ CFLAGS=-g -fsanitize=address -I . -Wall -Wextra #-Werror
 #    compilers that don't derive from these, so, just remove them if you're
 #    using such a compiler
 
-all: lift_arealloc_example lift_free_and_null_example lift_vec_example
+all: lift_arealloc_example lift_free_and_null_example lift_vec_example lift_list_example
 
 lift_arealloc_example: lift_arealloc.h lift_arealloc.c examples/lift_arealloc_example.c
 	$(CC) -o $@ $(CFLAGS) lift_arealloc.c examples/lift_arealloc_example.c
@@ -16,8 +16,12 @@ lift_free_and_null_example: lift_free_and_null.h lift_free_and_null.c examples/l
 lift_vec_example: lift_free_and_null.h lift_free_and_null.c lift_arealloc.h lift_arealloc.c lift_vec.h examples/lift_vec_example.c
 	$(CC) -o $@ $(CFLAGS) lift_free_and_null.c lift_arealloc.c examples/lift_vec_example.c
 
+lift_list_example: lift_free_and_null.h lift_free_and_null.c lift_arealloc.h lift_arealloc.c lift_list.h examples/lift_list_example.c
+	$(CC) -o $@ $(CFLAGS) lift_free_and_null.c lift_arealloc.c examples/lift_list_example.c
+
 
 clean:
 	rm lift_arealloc_example
 	rm lift_free_and_null_example
 	rm lift_vec_example
+	rm lift_list_example

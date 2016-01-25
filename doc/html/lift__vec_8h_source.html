@@ -195,24 +195,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="preprocessor">    for (it = lift_vec_begin(var); it != lift_vec_end(var); ++it)</span></div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
-<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="lift__vec_8h.html#a88b3bd2c4be95af37a75a6576b2ffafe">  232</a></span>&#160;<span class="preprocessor">#define lift_vec_find(var, val, rslt)                                   \</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="preprocessor">    for (rslt = lift_vec_begin(var); rslt != lift_vec_end(var); ++rslt) { \</span></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="preprocessor">        if (*rslt == (val)) {                                           \</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="preprocessor">            break;                                                      \</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="preprocessor">        }                                                               \</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="preprocessor">    }</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
-<div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="lift__vec_8h.html#ab4b8005f19e2530b27dc643cc32a3be4">  241</a></span>&#160;<span class="preprocessor">#define LIFT_PRINTF(var) printf(&quot;&#39;&quot;#var &quot;&#39; lift_vec: size=%d, capacity=%d, data=%p\n&quot;, (var).n, (var).c, (var).p)</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !defined INC_LIFT_VEC */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00238"></a><span class="lineno"><a class="line" href="lift__vec_8h.html#a88b3bd2c4be95af37a75a6576b2ffafe">  238</a></span>&#160;<span class="preprocessor">#define lift_vec_find(var, val, rslt)                                   \</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="preprocessor">    for (rslt = lift_vec_begin(var); rslt != lift_vec_end(var); ++rslt) { \</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="preprocessor">        if (*rslt == (val)) {                                           \</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="preprocessor">            break;                                                      \</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="preprocessor">        }                                                               \</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="preprocessor">    }</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00262"></a><span class="lineno"><a class="line" href="lift__vec_8h.html#a998bcb2d615941961ec73da0630a5479">  262</a></span>&#160;<span class="preprocessor">#define lift_vec_find_if(var, predicate, rslt)                          \</span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="preprocessor">    for (rslt = lift_vec_begin(var); rslt != lift_vec_end(var); ++rslt) { \</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="preprocessor">        if (predicate) {                                                \</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="preprocessor">            break;                                                      \</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="preprocessor">        }                                                               \</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="preprocessor">    }</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="preprocessor">#define lift_vec_bsearch(var, val, rslt, aux)                           \</span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="preprocessor">    for (rslt = lift_vec_begin(var), aux = lift_vec_end(var); rslt &lt; aux; ) { \</span></div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="preprocessor">        void *probe_ =  rslt + (aux - rslt) / 2;                        \</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="preprocessor">        if (val == *(rslt + (aux - rslt) / 2)) {                        \</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor">            rslt = probe_;                                              \</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="preprocessor">            break;                                                      \</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="preprocessor">        }                                                               \</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="preprocessor">        else if (val &lt; *(rslt + (aux - rslt) / 2)) {                    \</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="preprocessor">            aux = probe_;                                               \</span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="preprocessor">        }                                                               \</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="preprocessor">        else {                                                          \</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="preprocessor">            rslt = (void*)((char*)probe_ + sizeof *rslt);               \</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="preprocessor">        }                                                               \</span></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="preprocessor">    }</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00286"></a><span class="lineno"><a class="line" href="lift__vec_8h.html#ab4b8005f19e2530b27dc643cc32a3be4">  286</a></span>&#160;<span class="preprocessor">#define LIFT_PRINTF(var) printf(&quot;&#39;&quot;#var &quot;&#39; lift_vec: size=%d, capacity=%d, data=%p\n&quot;, (var).n, (var).c, (var).p)</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !defined INC_LIFT_VEC */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="lift__free__and__null_8h_html"><div class="ttname"><a href="lift__free__and__null_8h.html">lift_free_and_null.h</a></div><div class="ttdoc">A safer alternative to free(). </div></div>
 <div class="ttc" id="lift__arealloc_8h_html"><div class="ttname"><a href="lift__arealloc_8h.html">lift_arealloc.h</a></div><div class="ttdoc">Safe alternative for realloc() for arrays. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 12 2015 23:36:25 for LIFT - Lift Is not a Framework or Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 25 2016 21:23:47 for LIFT - Lift Is not a Framework or Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

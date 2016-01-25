@@ -101,6 +101,13 @@ Include dependency graph for lift_vec.h:</div>
 <map name="lift__vec_8h" id="lift__vec_8h">
 <area shape="rect" id="node2" href="lift__arealloc_8h.html" title="Safe alternative for realloc() for arrays. " alt="" coords="5,80,104,107"/><area shape="rect" id="node4" href="lift__free__and__null_8h.html" title="A safer alternative to free(). " alt="" coords="128,80,257,107"/></map>
 </div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="lift__vec_8h__dep__incl.png" border="0" usemap="#lift__vec_8hdep" alt=""/></div>
+<map name="lift__vec_8hdep" id="lift__vec_8hdep">
+<area shape="rect" id="node2" href="lift_8h.html" title="lift.h" alt="" coords="18,80,64,107"/></map>
+</div>
 </div>
 <p><a href="lift__vec_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -203,6 +210,11 @@ Macros</h2></td></tr>
 <tr class="memitem:a88b3bd2c4be95af37a75a6576b2ffafe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lift__vec_8h.html#a88b3bd2c4be95af37a75a6576b2ffafe">lift_vec_find</a>(var, val, rslt)</td></tr>
 <tr class="memdesc:a88b3bd2c4be95af37a75a6576b2ffafe"><td class="mdescLeft">&#160;</td><td class="mdescRight">A helper macro to search for the value <code>val</code> in the vector <code>var</code>.  <a href="#a88b3bd2c4be95af37a75a6576b2ffafe">More...</a><br/></td></tr>
 <tr class="separator:a88b3bd2c4be95af37a75a6576b2ffafe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a998bcb2d615941961ec73da0630a5479"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lift__vec_8h.html#a998bcb2d615941961ec73da0630a5479">lift_vec_find_if</a>(var, predicate, rslt)</td></tr>
+<tr class="memdesc:a998bcb2d615941961ec73da0630a5479"><td class="mdescLeft">&#160;</td><td class="mdescRight">A helper macro to search for the element position in the vector <code>var</code> that satisfies the <code>predicate</code>.  <a href="#a998bcb2d615941961ec73da0630a5479">More...</a><br/></td></tr>
+<tr class="separator:a998bcb2d615941961ec73da0630a5479"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a406fc13f110c4eeebbc75ed26437b9f7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>lift_vec_bsearch</b>(var, val, rslt, aux)</td></tr>
+<tr class="separator:a406fc13f110c4eeebbc75ed26437b9f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4b8005f19e2530b27dc643cc32a3be4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4b8005f19e2530b27dc643cc32a3be4"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lift__vec_8h.html#ab4b8005f19e2530b27dc643cc32a3be4">LIFT_PRINTF</a>(var)&#160;&#160;&#160;printf(&quot;'&quot;#var &quot;' lift_vec: size=%d, capacity=%d, data=%p\n&quot;, (var).n, (var).c, (var).p)</td></tr>
 <tr class="memdesc:ab4b8005f19e2530b27dc643cc32a3be4"><td class="mdescLeft">&#160;</td><td class="mdescRight">A helper macro to printf-out the vector <code>var</code>. <br/></td></tr>
@@ -278,6 +290,59 @@ Macros</h2></td></tr>
 <p>This is the first element if vector is not empty. If the vector is empty, the only guarantee is that <a class="el" href="lift__vec_8h.html#a09e49321f68f213ed563b36026507904" title="Gives an iterator (pointer, really) to the begining of the vector var. ">lift_vec_begin(v)</a> == <a class="el" href="lift__vec_8h.html#a3e99cd489d53306dc19917e5ad400ba8" title="Gives an iterator (pointer, really) to the end of the vector var. ">lift_vec_end(v)</a>. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="lift_vec_example_8c-example.html#a4">lift_vec_example.c</a>.</dd>
 </dl>
+</div>
+</div>
+<a class="anchor" id="a406fc13f110c4eeebbc75ed26437b9f7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define lift_vec_bsearch</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">var, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">val, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">rslt, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">aux&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">for</span> (rslt = <a class="code" href="lift__vec_8h.html#a09e49321f68f213ed563b36026507904">lift_vec_begin</a>(var), aux = <a class="code" href="lift__vec_8h.html#a3e99cd489d53306dc19917e5ad400ba8">lift_vec_end</a>(var); rslt &lt; aux; ) { \</div>
+<div class="line">        void *probe_ =  rslt + (aux - rslt) / 2;                        \</div>
+<div class="line">        if (val == *(rslt + (aux - rslt) / 2)) {                        \</div>
+<div class="line">            rslt = probe_;                                              \</div>
+<div class="line">            break;                                                      \</div>
+<div class="line">        }                                                               \</div>
+<div class="line">        else <span class="keywordflow">if</span> (val &lt; *(rslt + (aux - rslt) / 2)) {                    \</div>
+<div class="line">            aux = probe_;                                               \</div>
+<div class="line">        }                                                               \</div>
+<div class="line">        else {                                                          \</div>
+<div class="line">            rslt = (<span class="keywordtype">void</span>*)((<span class="keywordtype">char</span>*)probe_ + <span class="keyword">sizeof</span> *rslt);               \</div>
+<div class="line">        }                                                               \</div>
+<div class="line">    }</div>
+<div class="ttc" id="lift__vec_8h_html_a09e49321f68f213ed563b36026507904"><div class="ttname"><a href="lift__vec_8h.html#a09e49321f68f213ed563b36026507904">lift_vec_begin</a></div><div class="ttdeci">#define lift_vec_begin(var)</div><div class="ttdoc">Gives an iterator (pointer, really) to the begining of the vector var. </div><div class="ttdef"><b>Definition:</b> lift_vec.h:56</div></div>
+<div class="ttc" id="lift__vec_8h_html_a3e99cd489d53306dc19917e5ad400ba8"><div class="ttname"><a href="lift__vec_8h.html#a3e99cd489d53306dc19917e5ad400ba8">lift_vec_end</a></div><div class="ttdeci">#define lift_vec_end(var)</div><div class="ttdoc">Gives an iterator (pointer, really) to the end of the vector var. </div><div class="ttdef"><b>Definition:</b> lift_vec.h:63</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a3e99cd489d53306dc19917e5ad400ba8"></a>
@@ -376,8 +441,57 @@ Macros</h2></td></tr>
 <div class="ttc" id="lift__vec_8h_html_a3e99cd489d53306dc19917e5ad400ba8"><div class="ttname"><a href="lift__vec_8h.html#a3e99cd489d53306dc19917e5ad400ba8">lift_vec_end</a></div><div class="ttdeci">#define lift_vec_end(var)</div><div class="ttdoc">Gives an iterator (pointer, really) to the end of the vector var. </div><div class="ttdef"><b>Definition:</b> lift_vec.h:63</div></div>
 </div><!-- fragment -->
 <p>A helper macro to search for the value <code>val</code> in the vector <code>var</code>. </p>
-<p>The result will be stored in the iterator/pointer <code>rslt</code>, that you must provide. On success, it will give a safe iterator/position at which the given value was found. On failure, it will give the end iterator. </p>
+<p>The result will be stored in the iterator/pointer <code>rslt</code>, that you must provide. On success, it will give a safe iterator/position at which the given value was found. On failure, it will give the end iterator.</p>
+<dl class="section note"><dt>Note</dt><dd>this will only work if the type of the elements that are stored in the vector is such that its variables can be compared using the <code>==</code> operator</dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="lift__vec_8h.html#a998bcb2d615941961ec73da0630a5479" title="A helper macro to search for the element position in the vector var that satisfies the predicate...">lift_vec_find_if</a> </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="lift_vec_example_8c-example.html#a17">lift_vec_example.c</a>.</dd>
+</dl>
+</div>
+</div>
+<a class="anchor" id="a998bcb2d615941961ec73da0630a5479"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define lift_vec_find_if</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">var, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">predicate, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">rslt&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">for</span> (rslt = <a class="code" href="lift__vec_8h.html#a09e49321f68f213ed563b36026507904">lift_vec_begin</a>(var); rslt != <a class="code" href="lift__vec_8h.html#a3e99cd489d53306dc19917e5ad400ba8">lift_vec_end</a>(var); ++rslt) { \</div>
+<div class="line">        if (predicate) {                                                \</div>
+<div class="line">            break;                                                      \</div>
+<div class="line">        }                                                               \</div>
+<div class="line">    }</div>
+<div class="ttc" id="lift__vec_8h_html_a09e49321f68f213ed563b36026507904"><div class="ttname"><a href="lift__vec_8h.html#a09e49321f68f213ed563b36026507904">lift_vec_begin</a></div><div class="ttdeci">#define lift_vec_begin(var)</div><div class="ttdoc">Gives an iterator (pointer, really) to the begining of the vector var. </div><div class="ttdef"><b>Definition:</b> lift_vec.h:56</div></div>
+<div class="ttc" id="lift__vec_8h_html_a3e99cd489d53306dc19917e5ad400ba8"><div class="ttname"><a href="lift__vec_8h.html#a3e99cd489d53306dc19917e5ad400ba8">lift_vec_end</a></div><div class="ttdeci">#define lift_vec_end(var)</div><div class="ttdoc">Gives an iterator (pointer, really) to the end of the vector var. </div><div class="ttdef"><b>Definition:</b> lift_vec.h:63</div></div>
+</div><!-- fragment -->
+<p>A helper macro to search for the element position in the vector <code>var</code> that satisfies the <code>predicate</code>. </p>
+<p>The result will be stored in the iterator/pointer <code>rslt</code>, that you must provide. On success, it will give a safe iterator/position at which the given value was found. On failure, it will give the end iterator.</p>
+<p>The <code>predicate</code> is an expression that can operate on pretty much anything, but is expected to operate on the <code>rslt</code>, which will hold the current iterator in the vector. Use like: </p>
+<pre class="fragment">lift_vec_find_if(v, *iter == 55, iter); // vector of integers
+lift_vec_find_if(v, iter-&gt;a == 55, iter); // vector of some structures
+</pre><dl class="section see"><dt>See Also</dt><dd><a class="el" href="lift__vec_8h.html#a88b3bd2c4be95af37a75a6576b2ffafe" title="A helper macro to search for the value val in the vector var. ">lift_vec_find</a> </dd></dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="lift_vec_example_8c-example.html#a18">lift_vec_example.c</a>.</dd>
 </dl>
 </div>
 </div>
@@ -457,7 +571,7 @@ Macros</h2></td></tr>
 
 <p>Once you're done with the vector, use this macro to free any resources (memory) that was allocated during its use. </p>
 <p>After a call to this, vector is invalid. </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="lift_vec_example_8c-example.html#a18">lift_vec_example.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="lift_vec_example_8c-example.html#a19">lift_vec_example.c</a>.</dd>
 </dl>
 </div>
 </div>
@@ -587,7 +701,7 @@ Macros</h2></td></tr>
 </div><!-- fragment -->
 <p>Pushes the value <code>val</code> to the end of vector <code>var</code>, increasing the vector's size. </p>
 <p>If successful, returns 0, otherwise -1. </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="lift_vec_example_8c-example.html#a6">lift_vec_example.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="lift_vec_example_8c-example.html#a7">lift_vec_example.c</a>.</dd>
 </dl>
 </div>
 </div>
@@ -696,7 +810,7 @@ Macros</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 12 2015 23:36:25 for LIFT - Lift Is not a Framework or Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 25 2016 21:23:47 for LIFT - Lift Is not a Framework or Toolkit by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -228,11 +228,56 @@
     On success, it will give a safe iterator/position at which the
     given value was found.
     On failure, it will give the end iterator.
+
+    @note this will only work if the type of the elements that are
+    stored in the vector is such that its variables can be compared
+    using the `==` operator
+
+    @see lift_vec_find_if
 */
 #define lift_vec_find(var, val, rslt)                                   \
     for (rslt = lift_vec_begin(var); rslt != lift_vec_end(var); ++rslt) { \
         if (*rslt == (val)) {                                           \
             break;                                                      \
+        }                                                               \
+    }
+
+/** A helper macro to search for the element position in the vector @p var
+    that satisfies the @p predicate.
+    The result will be stored in the iterator/pointer @p rslt, that
+    you must provide.
+    On success, it will give a safe iterator/position at which the
+    given value was found.
+    On failure, it will give the end iterator.
+
+    The @p predicate is an expression that can operate on pretty much
+    anything, but is expected to operate on the @p rslt, which will
+    hold the current iterator in the vector. Use like:
+
+        lift_vec_find_if(v, *iter == 55, iter); // vector of integers
+        lift_vec_find_if(v, iter->a == 55, iter); // vector of some structures
+
+    @see lift_vec_find
+*/
+#define lift_vec_find_if(var, predicate, rslt)                          \
+    for (rslt = lift_vec_begin(var); rslt != lift_vec_end(var); ++rslt) { \
+        if (predicate) {                                                \
+            break;                                                      \
+        }                                                               \
+    }
+
+#define lift_vec_bsearch(var, val, rslt, aux)                           \
+    for (rslt = lift_vec_begin(var), aux = lift_vec_end(var); rslt < aux; ) { \
+        void *probe_ =  rslt + (aux - rslt) / 2;                        \
+        if (val == *(rslt + (aux - rslt) / 2)) {                        \
+            rslt = probe_;                                              \
+            break;                                                      \
+        }                                                               \
+        else if (val < *(rslt + (aux - rslt) / 2)) {                    \
+            aux = probe_;                                               \
+        }                                                               \
+        else {                                                          \
+            rslt = (void*)((char*)probe_ + sizeof *rslt);               \
         }                                                               \
     }
 

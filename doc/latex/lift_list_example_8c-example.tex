@@ -1,0 +1,173 @@
+\hypertarget{lift_list_example_8c-example}{\section{lift\-\_\-list\-\_\-example.\-c}
+}
+
+\begin{DoxyCodeInclude}
+\textcolor{comment}{/* -*- c-file-style:"stroustrup"; indent-tabs-mode: nil -*- */}
+\textcolor{preprocessor}{#include "\hyperlink{lift__list_8h}{lift\_list.h}"}
+
+\textcolor{preprocessor}{#include <assert.h>}
+
+
+\textcolor{keywordtype}{int} main()
+\{
+    \textcolor{keyword}{typedef} \hyperlink{lift__list_8h_a452f6ea7d24203a109ae99288c34b40b}{LIFT\_DECL\_LIST}(\textcolor{keywordtype}{int}) listint\_t;
+
+    listint\_t l;
+    listint\_t l\_2;
+    listint\_t l\_tr;
+    listint\_t *lhead;
+    \textcolor{keywordtype}{int} data;
+
+    \hyperlink{lift__list_8h_ad982373028031b0b6933adf6b9654cd9}{LIFT\_LIST\_INIT}(l);
+    \hyperlink{lift__list_8h_ad982373028031b0b6933adf6b9654cd9}{LIFT\_LIST\_INIT}(l\_2);
+    \hyperlink{lift__list_8h_ad982373028031b0b6933adf6b9654cd9}{LIFT\_LIST\_INIT}(l\_tr);
+
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l));
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l\_2));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l\_2));
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l\_tr));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l\_tr));
+
+    \hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l) = 1;
+    \hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l\_2) = 2;
+    \hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l\_tr) = 3;
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l) == 1);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l\_2) == 2);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l\_tr) == 3);
+
+    \hyperlink{lift__list_8h_ad7db883ffac13b478e440b1daff7ca63}{lift\_list\_link\_before}(&l\_2, &l);
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l));
+    assert(\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l));
+    assert(\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l\_2));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l\_2));
+    assert(\hyperlink{lift__list_8h_a7ad4a0445d313206092468e16f204c04}{lift\_list\_next}(&l\_2) == &l);
+    assert(\hyperlink{lift__list_8h_a14efcc5d103ea97705b0523dc7a03d86}{lift\_list\_previous}(&l) == &l\_2);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l) == 1);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l\_2) == 2);
+
+    \hyperlink{lift__list_8h_ada555757a11dfdf5ee6b1aafbc31bb4d}{lift\_list\_unlink}(&l\_2);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l) == 1);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l\_2) == 2);
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l));
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l\_2));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l\_2));
+
+    \hyperlink{lift__list_8h_a0c5108788016c69ad8608b5b7f52746e}{lift\_list\_link\_after}(&l\_2, &l);
+    assert(\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l));
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l\_2));
+    assert(\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l\_2));
+    assert(\hyperlink{lift__list_8h_a14efcc5d103ea97705b0523dc7a03d86}{lift\_list\_previous}(&l\_2) == &l);
+    assert(\hyperlink{lift__list_8h_a7ad4a0445d313206092468e16f204c04}{lift\_list\_next}(&l) == &l\_2);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l) == 1);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l\_2) == 2);
+
+    \hyperlink{lift__list_8h_ada555757a11dfdf5ee6b1aafbc31bb4d}{lift\_list\_unlink}(&l\_2);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l) == 1);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l\_2) == 2);
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l));
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l\_2));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l\_2));
+
+    lhead = &l;
+    \hyperlink{lift__list_8h_a0c5108788016c69ad8608b5b7f52746e}{lift\_list\_link\_after}(&l\_2, &l);
+    \hyperlink{lift__list_8h_ad2cd76f5bea95d5166a54b799d62cce9}{lift\_list\_unlink\_safe}(&l, &lhead);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l) == 1);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l\_2) == 2);
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l));
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l\_2));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l\_2));
+    assert(lhead == &l\_2);
+
+    \hyperlink{lift__list_8h_ab5aa1fa635c6f31709d54ac3dcfc233b}{LIFT\_LIST\_FOR\_EACH}(lhead, l) \{
+        assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(*lhead) == 1);
+    \}
+    \hyperlink{lift__list_8h_a1ffcd652c2291e678a3c33d132c1f5dd}{lift\_list\_find}(l, 1, lhead);
+    assert(lhead == &l);
+    \hyperlink{lift__list_8h_a1ffcd652c2291e678a3c33d132c1f5dd}{lift\_list\_find}(l, 2, lhead);
+    assert(lhead == NULL);
+    \hyperlink{lift__list_8h_a6b573effa4a15335a34a6d84181a2667}{lift\_list\_find\_if}(l, \hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(*lhead) == 1, lhead);
+    assert(lhead == &l);
+    \hyperlink{lift__list_8h_a6b573effa4a15335a34a6d84181a2667}{lift\_list\_find\_if}(l, \hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(*lhead) == 2, lhead);
+    assert(lhead == NULL);
+
+    \hyperlink{lift__list_8h_a0c5108788016c69ad8608b5b7f52746e}{lift\_list\_link\_after}(&l\_2, &l);
+    data = 1;
+    \hyperlink{lift__list_8h_ab5aa1fa635c6f31709d54ac3dcfc233b}{LIFT\_LIST\_FOR\_EACH}(lhead, l) \{
+        assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(*lhead) == data);
+        \textcolor{keywordflow}{if} (1 == data) \{
+            data = 2;
+        \}
+    \}
+    \hyperlink{lift__list_8h_a1ffcd652c2291e678a3c33d132c1f5dd}{lift\_list\_find}(l, 1, lhead);
+    assert(lhead == &l);
+    \hyperlink{lift__list_8h_a1ffcd652c2291e678a3c33d132c1f5dd}{lift\_list\_find}(l, 2, lhead);
+    assert(lhead == &l\_2);
+    \hyperlink{lift__list_8h_a1ffcd652c2291e678a3c33d132c1f5dd}{lift\_list\_find}(l, 3, lhead);
+    assert(lhead == NULL);
+    \hyperlink{lift__list_8h_a1ffcd652c2291e678a3c33d132c1f5dd}{lift\_list\_find}(l\_2, 1, lhead);
+    assert(lhead == NULL);
+    \hyperlink{lift__list_8h_a1ffcd652c2291e678a3c33d132c1f5dd}{lift\_list\_find}(l\_2, 2, lhead);
+    assert(lhead == &l\_2);
+    \hyperlink{lift__list_8h_a1ffcd652c2291e678a3c33d132c1f5dd}{lift\_list\_find}(l\_2, 3, lhead);
+    assert(lhead == NULL);
+    \hyperlink{lift__list_8h_a6b573effa4a15335a34a6d84181a2667}{lift\_list\_find\_if}(l, \hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(*lhead) == 1, lhead);
+    assert(lhead == &l);
+    \hyperlink{lift__list_8h_a6b573effa4a15335a34a6d84181a2667}{lift\_list\_find\_if}(l, \hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(*lhead) == 2, lhead);
+    assert(lhead == &l\_2);
+    \hyperlink{lift__list_8h_a6b573effa4a15335a34a6d84181a2667}{lift\_list\_find\_if}(l, \hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(*lhead) == 3, lhead);
+    assert(lhead == NULL);
+    \hyperlink{lift__list_8h_a6b573effa4a15335a34a6d84181a2667}{lift\_list\_find\_if}(l\_2, \hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(*lhead) == 1, lhead);
+    assert(lhead == NULL);
+    \hyperlink{lift__list_8h_a6b573effa4a15335a34a6d84181a2667}{lift\_list\_find\_if}(l\_2, \hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(*lhead) == 2, lhead);
+    assert(lhead == &l\_2);
+    \hyperlink{lift__list_8h_a6b573effa4a15335a34a6d84181a2667}{lift\_list\_find\_if}(l\_2, \hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(*lhead) == 3, lhead);
+    assert(lhead == NULL);
+
+    \hyperlink{lift__list_8h_a0c5108788016c69ad8608b5b7f52746e}{lift\_list\_link\_after}(&l\_tr, &l);
+    assert(\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l));
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l\_2));
+    assert(\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l\_2));
+    assert(\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l\_tr));
+    assert(\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l\_tr));
+    assert(\hyperlink{lift__list_8h_a14efcc5d103ea97705b0523dc7a03d86}{lift\_list\_previous}(&l\_tr) == &l);
+    assert(\hyperlink{lift__list_8h_a7ad4a0445d313206092468e16f204c04}{lift\_list\_next}(&l) == &l\_tr);
+    assert(\hyperlink{lift__list_8h_a14efcc5d103ea97705b0523dc7a03d86}{lift\_list\_previous}(&l\_2) == &l\_tr);
+    assert(\hyperlink{lift__list_8h_a7ad4a0445d313206092468e16f204c04}{lift\_list\_next}(&l\_tr) == &l\_2);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l) == 1);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l\_2) == 2);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l\_tr) == 3);
+
+    data = 1;
+    \hyperlink{lift__list_8h_ab5aa1fa635c6f31709d54ac3dcfc233b}{LIFT\_LIST\_FOR\_EACH}(lhead, l) \{
+        assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(*lhead) == data);
+        \textcolor{keywordflow}{if} (1 == data) \{
+            data = 3;
+        \}
+        \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (3 == data) \{
+            data = 2;
+        \}
+    \}
+
+    \hyperlink{lift__list_8h_ada555757a11dfdf5ee6b1aafbc31bb4d}{lift\_list\_unlink}(&l\_tr);
+    assert(\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l));
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l\_2));
+    assert(\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l\_2));
+    assert(!\hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\_list\_has\_next}(&l\_tr));
+    assert(!\hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\_list\_has\_previous}(&l\_tr));
+    assert(\hyperlink{lift__list_8h_a14efcc5d103ea97705b0523dc7a03d86}{lift\_list\_previous}(&l\_2) == &l);
+    assert(\hyperlink{lift__list_8h_a7ad4a0445d313206092468e16f204c04}{lift\_list\_next}(&l) == &l\_2);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l) == 1);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l\_2) == 2);
+    assert(\hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\_list\_data}(l\_tr) == 3);
+
+    \textcolor{keywordflow}{return} 0;
+\}
+\end{DoxyCodeInclude}
+ 

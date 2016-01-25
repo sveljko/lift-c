@@ -1,0 +1,279 @@
+\hypertarget{lift__list_8h}{\section{lift\-\_\-list.\-h File Reference}
+\label{lift__list_8h}\index{lift\-\_\-list.\-h@{lift\-\_\-list.\-h}}
+}
+
+
+A doubly linked list generic type for C.  
+
+
+{\ttfamily \#include $<$string.\-h$>$}\\*
+Include dependency graph for lift\-\_\-list.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=132pt]{lift__list_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{lift__list_8h_a452f6ea7d24203a109ae99288c34b40b}{L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-L\-I\-S\-T}(typ)~struct Lift\-List\-\_\-\#\#typ \{ struct Lift\-List\-\_\-\#\#typ $\ast$next; struct Lift\-List\-\_\-\#\#typ $\ast$prev; typ data; \}
+\begin{DoxyCompactList}\small\item\em Declare a list (node) for the given type {\ttfamily typ}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__list_8h_af93872e800b61364a523eb683c5a17fd}{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-V\-A\-R}(typ, var)~\hyperlink{lift__list_8h_a452f6ea7d24203a109ae99288c34b40b}{L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-L\-I\-S\-T}(typ) var =  \{ N\-U\-L\-L, N\-U\-L\-L \}
+\begin{DoxyCompactList}\small\item\em Declare a variable of the list (node) of type {\ttfamily typ}, with the name (symbol) {\ttfamily var}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__list_8h_ad982373028031b0b6933adf6b9654cd9}{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-I\-N\-I\-T}(var)~memset(\&(var), 0, sizeof (var))
+\begin{DoxyCompactList}\small\item\em Initializes a list (node) variable with symbol/name {\ttfamily var}. \end{DoxyCompactList}\item 
+\hypertarget{lift__list_8h_a7ad4a0445d313206092468e16f204c04}{\#define \hyperlink{lift__list_8h_a7ad4a0445d313206092468e16f204c04}{lift\-\_\-list\-\_\-next}(var)~((var)-\/$>$next)}\label{lift__list_8h_a7ad4a0445d313206092468e16f204c04}
+
+\begin{DoxyCompactList}\small\item\em Gives an iterator (node pointer, really) to the next element of the list node {\ttfamily var}. \end{DoxyCompactList}\item 
+\hypertarget{lift__list_8h_a14efcc5d103ea97705b0523dc7a03d86}{\#define \hyperlink{lift__list_8h_a14efcc5d103ea97705b0523dc7a03d86}{lift\-\_\-list\-\_\-previous}(var)~((var)-\/$>$prev)}\label{lift__list_8h_a14efcc5d103ea97705b0523dc7a03d86}
+
+\begin{DoxyCompactList}\small\item\em Gives an iterator (node pointer, really) to the previous element of the list node {\ttfamily var}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{lift\-\_\-list\-\_\-has\-\_\-next}(var)~(\hyperlink{lift__list_8h_a7ad4a0445d313206092468e16f204c04}{lift\-\_\-list\-\_\-next}(var) != N\-U\-L\-L)
+\begin{DoxyCompactList}\small\item\em Predicate giving indication whether there is an element after the given {\ttfamily var} list node. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{lift\-\_\-list\-\_\-has\-\_\-previous}(var)~(\hyperlink{lift__list_8h_a14efcc5d103ea97705b0523dc7a03d86}{lift\-\_\-list\-\_\-previous}(var) != N\-U\-L\-L)
+\begin{DoxyCompactList}\small\item\em Predicate giving indication whether there is an element before the given {\ttfamily var} list node. \end{DoxyCompactList}\item 
+\hypertarget{lift__list_8h_ad7db883ffac13b478e440b1daff7ca63}{\#define \hyperlink{lift__list_8h_ad7db883ffac13b478e440b1daff7ca63}{lift\-\_\-list\-\_\-link\-\_\-before}(to\-\_\-link, before\-\_\-this)~(to\-\_\-link)-\/$>$next = (before\-\_\-this), (to\-\_\-link)-\/$>$prev = (before\-\_\-this)-\/$>$prev, (before\-\_\-this)-\/$>$prev ? (before\-\_\-this)-\/$>$prev-\/$>$next = (to\-\_\-link) \-: N\-U\-L\-L, (before\-\_\-this)-\/$>$prev = (to\-\_\-link)}\label{lift__list_8h_ad7db883ffac13b478e440b1daff7ca63}
+
+\begin{DoxyCompactList}\small\item\em Links the element {\ttfamily to\-\_\-link} before the {\ttfamily before\-\_\-this} element, keeping any other elements in the list in the same order. \end{DoxyCompactList}\item 
+\hypertarget{lift__list_8h_a0c5108788016c69ad8608b5b7f52746e}{\#define \hyperlink{lift__list_8h_a0c5108788016c69ad8608b5b7f52746e}{lift\-\_\-list\-\_\-link\-\_\-after}(to\-\_\-link, after\-\_\-this)~(to\-\_\-link)-\/$>$prev = (after\-\_\-this), (to\-\_\-link)-\/$>$next = (after\-\_\-this)-\/$>$next, (after\-\_\-this)-\/$>$next ? (after\-\_\-this)-\/$>$next-\/$>$prev = (to\-\_\-link) \-: N\-U\-L\-L, (after\-\_\-this)-\/$>$next = (to\-\_\-link)}\label{lift__list_8h_a0c5108788016c69ad8608b5b7f52746e}
+
+\begin{DoxyCompactList}\small\item\em Links the element {\ttfamily to\-\_\-link} after the  element, keeping any other elements in the list in the same order. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__list_8h_ada555757a11dfdf5ee6b1aafbc31bb4d}{lift\-\_\-list\-\_\-unlink}(var)~((var)-\/$>$next) ? (var)-\/$>$next-\/$>$prev = (var)-\/$>$prev \-: N\-U\-L\-L,  ((var)-\/$>$prev) ? (var)-\/$>$prev-\/$>$next = (var)-\/$>$next \-: N\-U\-L\-L, (var)-\/$>$prev = (var)-\/$>$next = N\-U\-L\-L
+\begin{DoxyCompactList}\small\item\em Unlinks the list node {\ttfamily var} from the list it is in. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__list_8h_ad2cd76f5bea95d5166a54b799d62cce9}{lift\-\_\-list\-\_\-unlink\-\_\-safe}(var, head\-\_\-pointer)~((var) == $\ast$(head\-\_\-pointer)) ? $\ast$(head\-\_\-pointer) = (var)-\/$>$next \-: N\-U\-L\-L, \hyperlink{lift__list_8h_ada555757a11dfdf5ee6b1aafbc31bb4d}{lift\-\_\-list\-\_\-unlink}(var)
+\begin{DoxyCompactList}\small\item\em Unlinks the list node {\ttfamily var} from the list it is in, with the {\ttfamily head\-\_\-pointer} being the pointer to the list it is in (may be pointer to {\ttfamily var}). \end{DoxyCompactList}\item 
+\hypertarget{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{\#define \hyperlink{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}{lift\-\_\-list\-\_\-data}(var)~((var).data)}\label{lift__list_8h_ab9e9c5041ef5bbdac2e5260ce8827d77}
+
+\begin{DoxyCompactList}\small\item\em Gives the data of the list element {\ttfamily var}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__list_8h_ab5aa1fa635c6f31709d54ac3dcfc233b}{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H}(it, var)~for (it = \&(var); it != N\-U\-L\-L; it = \hyperlink{lift__list_8h_a7ad4a0445d313206092468e16f204c04}{lift\-\_\-list\-\_\-next}(it))
+\begin{DoxyCompactList}\small\item\em A helper macro to execute a for-\/each loop on the list {\ttfamily var}, accessing by the iterator/pointer {\ttfamily it}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__list_8h_a1ffcd652c2291e678a3c33d132c1f5dd}{lift\-\_\-list\-\_\-find}(var, val, rslt)
+\begin{DoxyCompactList}\small\item\em A helper macro to search for the value {\ttfamily val} in the list {\ttfamily var}. \end{DoxyCompactList}\item 
+\#define \hyperlink{lift__list_8h_a6b573effa4a15335a34a6d84181a2667}{lift\-\_\-list\-\_\-find\-\_\-if}(var, predicate, rslt)
+\begin{DoxyCompactList}\small\item\em A helper macro to search for the element position in the list {\ttfamily var} that satisfies the {\ttfamily predicate}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A doubly linked list generic type for C. It is a macro implementation, but some care was taken to make it as safe as possible\-:
+
+
+\begin{DoxyItemize}
+\item No variables are declared in the macros themselves
+\item Most macros are expressions
+\item There is a reasonable amount of checking done...
+\item ...and most type errors will be caught, with maybe ugly compiler errors
+\end{DoxyItemize}
+
+The only significant problem with this implementation is that {\itshape a} lot of parameters in these macros a evaluated more than once. So, you have to be careful not to pass expressions with side effects.
+
+This implementation goes for minimalism. One of the reasons for this is the macro implementation.
+
+Hence, it doesn't do any memory management of the list elements at all. It's up to the user to allocate and deallocate the elements and take care of their lifetime.
+
+This doesn't follow the C++ S\-T\-L interface. Some other list implementation in L\-I\-F\-T might follow the S\-T\-L interface, if a way can be found for the implementation to be of similar type safety and (macro) complexity.
+
+\begin{DoxyAuthor}{Author}
+Srdjan Veljkovic 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+M\-I\-T License 
+\end{DoxyCopyright}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{lift__list_8h_a452f6ea7d24203a109ae99288c34b40b}{\index{lift\-\_\-list.\-h@{lift\-\_\-list.\-h}!L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-L\-I\-S\-T@{L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-L\-I\-S\-T}}
+\index{L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-L\-I\-S\-T@{L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-L\-I\-S\-T}!lift_list.h@{lift\-\_\-list.\-h}}
+\subsubsection[{L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-L\-I\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-L\-I\-S\-T(
+\begin{DoxyParamCaption}
+\item[{}]{typ}
+\end{DoxyParamCaption}
+)~struct Lift\-List\-\_\-\#\#typ \{ struct Lift\-List\-\_\-\#\#typ $\ast$next; struct Lift\-List\-\_\-\#\#typ $\ast$prev; typ data; \}}}\label{lift__list_8h_a452f6ea7d24203a109ae99288c34b40b}
+
+
+Declare a list (node) for the given type {\ttfamily typ}. 
+
+A lot of the time you should {\ttfamily typedef} this. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_list_example_8c-example}{lift\-\_\-list\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__list_8h_a1ffcd652c2291e678a3c33d132c1f5dd}{\index{lift\-\_\-list.\-h@{lift\-\_\-list.\-h}!lift\-\_\-list\-\_\-find@{lift\-\_\-list\-\_\-find}}
+\index{lift\-\_\-list\-\_\-find@{lift\-\_\-list\-\_\-find}!lift_list.h@{lift\-\_\-list.\-h}}
+\subsubsection[{lift\-\_\-list\-\_\-find}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-list\-\_\-find(
+\begin{DoxyParamCaption}
+\item[{}]{var, }
+\item[{}]{val, }
+\item[{}]{rslt}
+\end{DoxyParamCaption}
+)}}\label{lift__list_8h_a1ffcd652c2291e678a3c33d132c1f5dd}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{for} (rslt = &(var); rslt != NULL; rslt = \hyperlink{lift__list_8h_a7ad4a0445d313206092468e16f204c04}{lift\_list\_next}(rslt)) \{    \(\backslash\)
+        if (rslt->data == (val)) \{                                      \(\backslash\)
+            break;                                                      \(\backslash\)
+        \}                                                               \(\backslash\)
+    \}
+\end{DoxyCode}
+
+
+A helper macro to search for the value {\ttfamily val} in the list {\ttfamily var}. 
+
+The result will be stored in the iterator/pointer {\ttfamily rslt}, that you must provide. On success, it will give a safe iterator/position at which the given value was found. On failure, it will give N\-U\-L\-L.
+
+\begin{DoxyNote}{Note}
+this will only work if the type of the elements that are stored in the list is such that its variables can be compared using the {\ttfamily ==} operator
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{lift__list_8h_a6b573effa4a15335a34a6d84181a2667}{lift\-\_\-list\-\_\-find\-\_\-if} 
+\end{DoxySeeAlso}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_list_example_8c-example}{lift\-\_\-list\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__list_8h_a6b573effa4a15335a34a6d84181a2667}{\index{lift\-\_\-list.\-h@{lift\-\_\-list.\-h}!lift\-\_\-list\-\_\-find\-\_\-if@{lift\-\_\-list\-\_\-find\-\_\-if}}
+\index{lift\-\_\-list\-\_\-find\-\_\-if@{lift\-\_\-list\-\_\-find\-\_\-if}!lift_list.h@{lift\-\_\-list.\-h}}
+\subsubsection[{lift\-\_\-list\-\_\-find\-\_\-if}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-list\-\_\-find\-\_\-if(
+\begin{DoxyParamCaption}
+\item[{}]{var, }
+\item[{}]{predicate, }
+\item[{}]{rslt}
+\end{DoxyParamCaption}
+)}}\label{lift__list_8h_a6b573effa4a15335a34a6d84181a2667}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{for} (rslt = &(var); rslt != NULL; rslt = \hyperlink{lift__list_8h_a7ad4a0445d313206092468e16f204c04}{lift\_list\_next}(rslt)) \{    \(\backslash\)
+        if (predicate) \{                                                \(\backslash\)
+            break;                                                      \(\backslash\)
+        \}                                                               \(\backslash\)
+    \}
+\end{DoxyCode}
+
+
+A helper macro to search for the element position in the list {\ttfamily var} that satisfies the {\ttfamily predicate}. 
+
+The result will be stored in the iterator/pointer {\ttfamily rslt}, that you must provide. On success, it will give a safe iterator/position at which the given value was found. On failure, it will give N\-U\-L\-L.
+
+The {\ttfamily predicate} is an expression that can operate on pretty much anything, but is expected to operate on the {\ttfamily rslt}, which will hold the current iterator in the vector. Use like\-: \begin{DoxyVerb}lift_list_find_if(v, iter->data == 55, iter); // list of integers
+lift_list_find_if(v, iter->data->a == 55, iter); // list of structures
+\end{DoxyVerb}
+
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{lift__list_8h_a1ffcd652c2291e678a3c33d132c1f5dd}{lift\-\_\-list\-\_\-find} 
+\end{DoxySeeAlso}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_list_example_8c-example}{lift\-\_\-list\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__list_8h_ab5aa1fa635c6f31709d54ac3dcfc233b}{\index{lift\-\_\-list.\-h@{lift\-\_\-list.\-h}!L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H@{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H}}
+\index{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H@{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H}!lift_list.h@{lift\-\_\-list.\-h}}
+\subsubsection[{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H(
+\begin{DoxyParamCaption}
+\item[{}]{it, }
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~for (it = \&(var); it != N\-U\-L\-L; it = {\bf lift\-\_\-list\-\_\-next}(it))}}\label{lift__list_8h_ab5aa1fa635c6f31709d54ac3dcfc233b}
+
+
+A helper macro to execute a for-\/each loop on the list {\ttfamily var}, accessing by the iterator/pointer {\ttfamily it}. 
+
+You have to declare the variable {\ttfamily it}. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_list_example_8c-example}{lift\-\_\-list\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}{\index{lift\-\_\-list.\-h@{lift\-\_\-list.\-h}!lift\-\_\-list\-\_\-has\-\_\-next@{lift\-\_\-list\-\_\-has\-\_\-next}}
+\index{lift\-\_\-list\-\_\-has\-\_\-next@{lift\-\_\-list\-\_\-has\-\_\-next}!lift_list.h@{lift\-\_\-list.\-h}}
+\subsubsection[{lift\-\_\-list\-\_\-has\-\_\-next}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-list\-\_\-has\-\_\-next(
+\begin{DoxyParamCaption}
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~({\bf lift\-\_\-list\-\_\-next}(var) != N\-U\-L\-L)}}\label{lift__list_8h_ae42328d75a1b8af0274af2f07a42b9e0}
+
+
+Predicate giving indication whether there is an element after the given {\ttfamily var} list node. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_list_example_8c-example}{lift\-\_\-list\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}{\index{lift\-\_\-list.\-h@{lift\-\_\-list.\-h}!lift\-\_\-list\-\_\-has\-\_\-previous@{lift\-\_\-list\-\_\-has\-\_\-previous}}
+\index{lift\-\_\-list\-\_\-has\-\_\-previous@{lift\-\_\-list\-\_\-has\-\_\-previous}!lift_list.h@{lift\-\_\-list.\-h}}
+\subsubsection[{lift\-\_\-list\-\_\-has\-\_\-previous}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-list\-\_\-has\-\_\-previous(
+\begin{DoxyParamCaption}
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~({\bf lift\-\_\-list\-\_\-previous}(var) != N\-U\-L\-L)}}\label{lift__list_8h_a4211e504808a0c84a8c6882be3f66d9d}
+
+
+Predicate giving indication whether there is an element before the given {\ttfamily var} list node. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_list_example_8c-example}{lift\-\_\-list\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__list_8h_ad982373028031b0b6933adf6b9654cd9}{\index{lift\-\_\-list.\-h@{lift\-\_\-list.\-h}!L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-I\-N\-I\-T@{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-I\-N\-I\-T}}
+\index{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-I\-N\-I\-T@{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-I\-N\-I\-T}!lift_list.h@{lift\-\_\-list.\-h}}
+\subsubsection[{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-I\-N\-I\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-I\-N\-I\-T(
+\begin{DoxyParamCaption}
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~memset(\&(var), 0, sizeof (var))}}\label{lift__list_8h_ad982373028031b0b6933adf6b9654cd9}
+
+
+Initializes a list (node) variable with symbol/name {\ttfamily var}. 
+
+This is the default initalization, which initializes the data to all 0.
+
+\begin{DoxyWarning}{Warning}
+The data initializaiton may not be a good value for your type, so you may need to change it after executing this. 
+\end{DoxyWarning}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_list_example_8c-example}{lift\-\_\-list\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__list_8h_ada555757a11dfdf5ee6b1aafbc31bb4d}{\index{lift\-\_\-list.\-h@{lift\-\_\-list.\-h}!lift\-\_\-list\-\_\-unlink@{lift\-\_\-list\-\_\-unlink}}
+\index{lift\-\_\-list\-\_\-unlink@{lift\-\_\-list\-\_\-unlink}!lift_list.h@{lift\-\_\-list.\-h}}
+\subsubsection[{lift\-\_\-list\-\_\-unlink}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-list\-\_\-unlink(
+\begin{DoxyParamCaption}
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~((var)-\/$>$next) ? (var)-\/$>$next-\/$>$prev = (var)-\/$>$prev \-: N\-U\-L\-L,  ((var)-\/$>$prev) ? (var)-\/$>$prev-\/$>$next = (var)-\/$>$next \-: N\-U\-L\-L, (var)-\/$>$prev = (var)-\/$>$next = N\-U\-L\-L}}\label{lift__list_8h_ada555757a11dfdf5ee6b1aafbc31bb4d}
+
+
+Unlinks the list node {\ttfamily var} from the list it is in. 
+
+Has no effect if {\ttfamily var} is not in any list.
+
+\begin{DoxyWarning}{Warning}
+This may be a problem if {\ttfamily var} is the head of the list, as you may loose information of what element is the head after this. So, only use this if you know it is not a problem for you. Otherwise, use \hyperlink{lift__list_8h_ad2cd76f5bea95d5166a54b799d62cce9}{lift\-\_\-list\-\_\-unlink\-\_\-safe()} 
+\end{DoxyWarning}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_list_example_8c-example}{lift\-\_\-list\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__list_8h_ad2cd76f5bea95d5166a54b799d62cce9}{\index{lift\-\_\-list.\-h@{lift\-\_\-list.\-h}!lift\-\_\-list\-\_\-unlink\-\_\-safe@{lift\-\_\-list\-\_\-unlink\-\_\-safe}}
+\index{lift\-\_\-list\-\_\-unlink\-\_\-safe@{lift\-\_\-list\-\_\-unlink\-\_\-safe}!lift_list.h@{lift\-\_\-list.\-h}}
+\subsubsection[{lift\-\_\-list\-\_\-unlink\-\_\-safe}]{\setlength{\rightskip}{0pt plus 5cm}\#define lift\-\_\-list\-\_\-unlink\-\_\-safe(
+\begin{DoxyParamCaption}
+\item[{}]{var, }
+\item[{}]{head\-\_\-pointer}
+\end{DoxyParamCaption}
+)~((var) == $\ast$(head\-\_\-pointer)) ? $\ast$(head\-\_\-pointer) = (var)-\/$>$next \-: N\-U\-L\-L, {\bf lift\-\_\-list\-\_\-unlink}(var)}}\label{lift__list_8h_ad2cd76f5bea95d5166a54b799d62cce9}
+
+
+Unlinks the list node {\ttfamily var} from the list it is in, with the {\ttfamily head\-\_\-pointer} being the pointer to the list it is in (may be pointer to {\ttfamily var}). 
+
+Has no effect if {\ttfamily var} is not in any list.
+
+If {\ttfamily var} is not in the list whose head is {\ttfamily head\-\_\-pointer}, it will still unlink itself from the list, without giving any indication that the parameters are incorrect. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{lift_list_example_8c-example}{lift\-\_\-list\-\_\-example.\-c}.\end{Desc}
+\hypertarget{lift__list_8h_af93872e800b61364a523eb683c5a17fd}{\index{lift\-\_\-list.\-h@{lift\-\_\-list.\-h}!L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-V\-A\-R@{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-V\-A\-R}}
+\index{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-V\-A\-R@{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-V\-A\-R}!lift_list.h@{lift\-\_\-list.\-h}}
+\subsubsection[{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-V\-A\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-V\-A\-R(
+\begin{DoxyParamCaption}
+\item[{}]{typ, }
+\item[{}]{var}
+\end{DoxyParamCaption}
+)~{\bf L\-I\-F\-T\-\_\-\-D\-E\-C\-L\-\_\-\-L\-I\-S\-T}(typ) var =  \{ N\-U\-L\-L, N\-U\-L\-L \}}}\label{lift__list_8h_af93872e800b61364a523eb683c5a17fd}
+
+
+Declare a variable of the list (node) of type {\ttfamily typ}, with the name (symbol) {\ttfamily var}. 
+
+Be aware that, while macros will work on this variable, it's type will not be the same as other variables declared with this macro in C99 and newer versions. To solve that, define a type with {\ttfamily typedef L\-I\-F\-T\-\_\-\-D\-E\-L\-\_\-\-L\-I\-S\-T(typ)}, then a variable of such type and then use \hyperlink{lift__list_8h_ad982373028031b0b6933adf6b9654cd9}{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-I\-N\-I\-T()} to initialize it.
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{lift__list_8h_ad982373028031b0b6933adf6b9654cd9}{L\-I\-F\-T\-\_\-\-L\-I\-S\-T\-\_\-\-I\-N\-I\-T} 
+\end{DoxySeeAlso}

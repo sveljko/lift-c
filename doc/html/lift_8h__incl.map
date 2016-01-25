@@ -1,4 +1,5 @@
 <map id="lift.h" name="lift.h">
-<area shape="rect" id="node2" href="$lift__arealloc_8h.html" title="Safe alternative for realloc() for arrays. " alt="" coords="5,80,104,107"/>
-<area shape="rect" id="node4" href="$lift__free__and__null_8h.html" title="A safer alternative to free(). " alt="" coords="128,80,257,107"/>
+<area shape="rect" id="node2" href="$lift__arealloc_8h.html" title="Safe alternative for realloc() for arrays. " alt="" coords="5,155,104,181"/>
+<area shape="rect" id="node4" href="$lift__free__and__null_8h.html" title="A safer alternative to free(). " alt="" coords="128,155,257,181"/>
+<area shape="rect" id="node5" href="$lift__vec_8h.html" title="A vector generic type for C. " alt="" coords="193,80,267,107"/>
 </map>
