@@ -14,4 +14,4 @@ Well, there is the "master" include file `lift.h`, but, in most
 cases, you should just include the header of the module that
 you need.
 
-The documentation should be visible here [](doc/html/index.html).
+The documentation should be visible here [Doxygen generated documentation](doc/html/index.html).
