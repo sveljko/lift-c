@@ -13,3 +13,5 @@ we don't need a _boost_ we just need a _lift_. :)
 Well, there is the "master" include file `lift.h`, but, in most
 cases, you should just include the header of the module that
 you need.
+
+The documentation should be visible here [](doc/html/index.html).
