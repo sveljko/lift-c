@@ -3,7 +3,6 @@
 #define INC_LIFT_LIST
 
 #include <string.h>
-//#include <stdio.h>
 
 
 /** @file lift_list.h
@@ -104,7 +103,7 @@
 /** Unlinks the list node @p var from the list it is in, with the @p
     head_pointer being the pointer to the list it is in (may be
     pointer to @p var). Has no effect if @p var is not in any list.
-    
+
     If @p var is not in the list whose head is @p head_pointer,
     it will still unlink itself from the list, without giving any
     indication that the parameters are incorrect.
